@@ -17,13 +17,15 @@ git clone https://github.com/burnt-labs/verona-dev-plugin.git ~/verona-dev-plugi
 
 Use any directory you prefer; replace `~/verona-dev-plugin` below with your checkout path.
 
-## What's included today
+## What you get
 
-| Piece | Path | Notes |
-|-------|------|-------|
-| Plugin manifests | `.cursor-plugin/`, `.codex-plugin/`, `.claude-plugin/`, `.kimi-plugin/` | Host discovery |
-| Skills | `skills/` | Placeholder until vdp-002 migrates the Verona skill corpus |
-| Session hooks | `hooks/` | Cursor + Claude sessionStart; Kimi manifest `sessionStart` |
+| Component | Location | Status |
+|-----------|----------|--------|
+| Host manifests | `.cursor-plugin/`, `.codex-plugin/`, `.claude-plugin/`, `.kimi-plugin/` | Available |
+| Shared skills | `skills/` | Available (vdp-002 corpus) |
+| Session entry | `verona-dev` skill + `hooks/` | Auto on Cursor, Kimi, Claude; manual on Codex |
+
+Each host discovers skills from the shared `skills/` tree per its manifest conventions.
 
 ---
 
