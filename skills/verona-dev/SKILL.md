@@ -3,7 +3,7 @@ name: verona-dev
 description: |
   Default entry router for ALL Verona development in this plugin. Use this skill whenever the user mentions Verona, MetaAccount, gasless auth, Treasury, OAuth2, xiond, CosmWasm, testnet faucet, NFT minting, or building on Burnt Labs — even if they do not say "verona-dev" or "toolkit".
 
-  Routes MetaAccount and toolkit work to in-plugin skills; routes chain queries, txs, xiond install, and CosmWasm to verona-bin. Do not treat external xion-skills repos as the primary install path.
+  Two-lane routing: app integration intents (web, mobile, native signing, headless OAuth REST) load `references/` guides under this skill; CLI operations (toolkit login, treasury admin, OAuth client CRUD, faucet, NFT) hand off to leaf skills (`verona-oauth2`, `verona-treasury`, etc.). Chain queries, txs, xiond install, and CosmWasm route to verona-bin. Do not treat external xion-skills repos as the primary install path.
 
   Triggers on: verona, xion, MetaAccount, gasless, 无 gas, Treasury, OAuth2, xiond, wasm, CosmWasm, faucet, testnet tokens, NFT, mint, burnt labs, build on xion, xion dapp, xion 开发, session key, verona agent toolkit.
 metadata:

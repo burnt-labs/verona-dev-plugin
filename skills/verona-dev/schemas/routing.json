@@ -36,6 +36,21 @@
       "keywords": ["react native", "expo", "mobile app", "abstraxion-react-native"],
       "skill": "verona-dev",
       "reference": "references/xion-js-web.md",
+      "also_read": ["references/auth-and-signing.md"],
+      "priority": 1
+    },
+    "app-sdk-auth": {
+      "intent_lane": "app-sdk",
+      "keywords": ["auth mode", "session key", "requireAuth", "signing client", "abstraxion auth"],
+      "skill": "verona-dev",
+      "reference": "references/auth-and-signing.md",
+      "priority": 1
+    },
+    "app-sdk-troubleshooting": {
+      "intent_lane": "app-sdk",
+      "keywords": ["package rename", "stale docs", "migration trap", "abstraxion rename"],
+      "skill": "verona-dev",
+      "reference": "references/troubleshooting.md",
       "priority": 1
     },
     "app-sdk-mob": {
@@ -61,7 +76,7 @@
     },
     "login": {
       "intent_lane": "cli",
-      "keywords": ["login", "auth", "OAuth2", "authenticate", "sign in", "登录", "认证", "MetaAccount 登录"],
+      "keywords": ["login", "OAuth2", "authenticate", "sign in", "登录", "认证", "MetaAccount 登录"],
       "skill": "verona-oauth2",
       "priority": 1
     },
@@ -91,7 +106,7 @@
     },
     "verona-bin-chain": {
       "intent_lane": "cli",
-      "keywords": ["xiond", "chain query", "rpc", "block", "transaction status", "balance query", "链上查询"],
+      "keywords": ["xiond", "chain query", "rpc query", "chain rpc", "block", "transaction status", "balance query", "链上查询"],
       "skill": "verona-bin",
       "priority": 2
     },

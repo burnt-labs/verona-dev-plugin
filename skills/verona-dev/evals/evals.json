@@ -1,7 +1,7 @@
 {
   "skill_name": "verona-dev",
   "evals": [
-    {"id": 1, "prompt": "I want to create a treasury for my Verona dApp", "expected_output": "Route to verona-treasury skill"},
+    {"id": 1, "prompt": "Fund and configure a treasury using the Verona toolkit CLI", "expected_output": "Route to verona-treasury skill"},
     {"id": 2, "prompt": "我的 Verona 应用需要管理 Treasury", "expected_output": "Route to verona-treasury skill (Chinese)"},
     {"id": 3, "prompt": "How do I login to Verona?", "expected_output": "Route to verona-oauth2 skill"},
     {"id": 4, "prompt": "Deploy a CosmWasm contract on Verona", "expected_output": "Route to verona-bin skill"},
