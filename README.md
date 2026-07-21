@@ -43,7 +43,7 @@ Do not mix lanes: app SDK setup stays in `verona-dev` references; toolkit comman
 ## Get started
 
 1. Clone this repository (or install from a published URL if your host supports it).
-2. Follow the steps for your host in [INSTALL.md](INSTALL.md) — including [cleanup of any older standalone `verona-*` / `xion-*` skills](INSTALL.md#clean-up-legacy-standalone-skills).
+2. Follow the steps for your host in [INSTALL.md](INSTALL.md) — remove any legacy non-plugin `verona-*` / `xion-*` skills first ([Cleanup legacy skills](INSTALL.md#cleanup-legacy-skills)).
 3. Reload or restart the agent after install.
 4. Start a Verona task — entry guidance loads with the session when hooks are active.
 

@@ -17,6 +17,34 @@ git clone https://github.com/burnt-labs/verona-dev-plugin.git ~/verona-dev-plugi
 
 Use any directory you prefer; replace `~/verona-dev-plugin` below with your checkout path.
 
+## Cleanup legacy skills
+
+If you previously installed **non-plugin** `verona-*` or `xion-*` / `xiond-*` skills (for example via `npx skills add burnt-labs/verona-agent-toolkit`, `burnt-labs/xion-skills`, or `skills.sh -g`), remove those copies **before** installing this plugin. Leftover standalone folders conflict with the plugin’s shared `skills/` tree (duplicate skill ids, stale routing, wrong paths).
+
+Check these personal skills roots **if present** and delete only folders whose names start with `verona-`, `xion-`, or `xiond-`:
+
+| Host / layout | Typical skills root |
+|---------------|---------------------|
+| Agents / Codex-style | `~/.agents/skills/` |
+| Cursor (personal skills) | `~/.cursor/skills/` |
+| Claude Code (personal skills) | `~/.claude/skills/` |
+
+Older `npx skills add … -a cursor -a claude-code -a codex -a openclaw` flows may also have created host-specific symlinks — confirm those targets are not still pointing at global copies of the legacy skills.
+
+Example (inspect first; remove only Verona/Xion folders, not the whole skills tree):
+
+```bash
+# List candidates
+ls ~/.agents/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
+ls ~/.cursor/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
+ls ~/.claude/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
+
+# Remove leftovers (adjust paths to match what you listed)
+rm -rf ~/.agents/skills/verona-* ~/.agents/skills/xion-* ~/.agents/skills/xiond-*
+```
+
+Do **not** delete the plugin checkout (for example `~/.cursor/plugins/local/verona-dev-plugin` or your clone under `~/verona-dev-plugin`).
+
 ## What you get
 
 | Component | Location | Status |
@@ -189,33 +217,7 @@ Manifest: `.claude-plugin/plugin.json`. Hooks: `hooks/hooks.json` (discovered by
 1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh).
 2. Confirm the plugin name **`verona-dev-plugin`** appears in the host's plugin list.
 3. On **Cursor**, **Kimi**, **Claude Code**, and **Codex**, session entry for **`verona-dev`** loads automatically when hooks/manifest are active. On **Codex**, trust plugin hooks first (`/hooks` or the trust prompt).
-4. If you previously installed **standalone** (non-plugin) `verona-*` or `xion-*` / `xiond-*` skills, remove them so the host does not load duplicates alongside this plugin — see [Clean up legacy standalone skills](#clean-up-legacy-standalone-skills).
-
-## Clean up legacy standalone skills
-
-Before this plugin, Verona / Xion agent skills were often copied or linked into a host’s personal skills directory (for example from `verona-agent-toolkit`, `xion-skills`, or similar). Those copies **conflict** with the plugin’s shared `skills/` tree (duplicate skill ids, stale routing, wrong paths).
-
-Remove any leftover **non-plugin** skill folders whose names start with `verona-`, `xion-`, or `xiond-` from common personal skills roots, for example:
-
-| Host / layout | Typical skills root |
-|---------------|---------------------|
-| Agents / Codex-style | `~/.agents/skills/` |
-| Cursor (personal skills) | `~/.cursor/skills/` |
-| Claude Code (personal skills) | `~/.claude/skills/` |
-
-Example (inspect first, then delete only the leftover Verona/Xion folders):
-
-```bash
-# List candidates
-ls ~/.agents/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
-ls ~/.cursor/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
-ls ~/.claude/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
-
-# Remove leftovers (adjust paths to match what you listed)
-rm -rf ~/.agents/skills/verona-* ~/.agents/skills/xion-* ~/.agents/skills/xiond-*
-```
-
-Do **not** delete the plugin checkout itself (for example `~/.cursor/plugins/local/verona-dev-plugin` or your clone under `~/verona-dev-plugin`). After cleanup, reload the host so only the plugin-provided skills remain.
+4. If legacy standalone skills were not removed before install, complete [Cleanup legacy skills](#cleanup-legacy-skills) and reload the host.
 
 ## Updating
 
