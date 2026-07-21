@@ -13,6 +13,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=security-utils.sh
+source "$SCRIPT_DIR/security-utils.sh"
+
 # ==============================================================================
 # Helper Functions
 # ==============================================================================
@@ -32,7 +36,7 @@ log_error() {
 handle_error() {
     local message="$1"
     local code="${2:-UNKNOWN_ERROR}"
-    output_json "{\"success\": false, \"error\": \"$message\", \"error_code\": \"$code\"}"
+    output_json "$(build_error_json "$message" "$code")"
     exit 1
 }
 
@@ -95,8 +99,8 @@ if [ -z "$ADDRESS" ]; then
     handle_error "Treasury address is required. Usage: $0 <ADDRESS>" "MISSING_ADDRESS"
 fi
 
-# Validate address format (basic check)
-if ! echo "$ADDRESS" | grep -qE "^xion1[a-zA-Z0-9]{38,}"; then
+# Validate address format
+if ! validate_address "$ADDRESS"; then
     handle_error "Invalid Treasury address format. Expected: xion1..." "INVALID_ADDRESS"
 fi
 
@@ -133,8 +137,11 @@ fi
 log_info "Running: ${CMD[*]}"
 
 # Execute command safely using array expansion
-RESULT=$("${CMD[@]}" 2>&1)
-EXIT_CODE=$?
+if RESULT=$("${CMD[@]}" 2>&1); then
+    EXIT_CODE=0
+else
+    EXIT_CODE=$?
+fi
 
 if [ $EXIT_CODE -eq 0 ]; then
     # Success - output the JSON result

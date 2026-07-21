@@ -144,8 +144,11 @@ CMD+=(--network "$NETWORK" --output json)
 log_info "Updating treasury $ADDRESS parameters on $NETWORK..."
 
 # Execute the command safely using array expansion
-RESULT=$("${CMD[@]}" 2>&1)
-EXIT_CODE=$?
+if RESULT=$("${CMD[@]}" 2>&1); then
+    EXIT_CODE=0
+else
+    EXIT_CODE=$?
+fi
 
 if [[ $EXIT_CODE -eq 0 ]]; then
     log_info "Treasury parameters updated successfully"

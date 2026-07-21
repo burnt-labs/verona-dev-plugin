@@ -8,6 +8,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=security-utils.sh
+source "$SCRIPT_DIR/security-utils.sh"
+
 # ==============================================================================
 # Helper Functions
 # ==============================================================================
@@ -634,8 +638,11 @@ esac
 
 # Execute command safely using array expansion
 log_info "Executing: ${CMD[*]}" >&2
-OUTPUT=$("${CMD[@]}" 2>&1)
-EXIT_CODE=$?
+if OUTPUT=$("${CMD[@]}" 2>&1); then
+    EXIT_CODE=0
+else
+    EXIT_CODE=$?
+fi
 
 # Clean up temp file if created
 if [[ -n "$TEMP_FILE" && -f "$TEMP_FILE" ]]; then
@@ -648,10 +655,6 @@ if [ $EXIT_CODE -eq 0 ]; then
 else
     log_error "Command failed with exit code $EXIT_CODE"
     log_error "Output: $OUTPUT" >&2
-    output_json "{
-        \"success\": false,
-        \"error\": \"Command failed with exit code $EXIT_CODE: $OUTPUT\",
-        \"error_code\": \"COMMAND_FAILED\"
-    }"
+    output_json "$(build_error_json "Command failed with exit code $EXIT_CODE: $OUTPUT" "COMMAND_FAILED")"
     exit 1
 fi

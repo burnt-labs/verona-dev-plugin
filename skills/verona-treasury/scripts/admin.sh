@@ -176,19 +176,29 @@ log_info "Executing admin action '$ACTION' on treasury $ADDRESS..."
 case "$ACTION" in
     propose)
         log_info "Proposing new admin: $NEW_ADMIN"
-        RESULT=$("${CLI_CMD[@]}" treasury admin propose "$ADDRESS" --new-admin "$NEW_ADMIN" --network "$NETWORK" --output json 2>&1)
+        if RESULT=$("${CLI_CMD[@]}" treasury admin propose "$ADDRESS" --new-admin "$NEW_ADMIN" --network "$NETWORK" --output json 2>&1); then
+            EXIT_CODE=0
+        else
+            EXIT_CODE=$?
+        fi
         ;;
     accept)
         log_info "Accepting admin role for treasury"
-        RESULT=$("${CLI_CMD[@]}" treasury admin accept "$ADDRESS" --network "$NETWORK" --output json 2>&1)
+        if RESULT=$("${CLI_CMD[@]}" treasury admin accept "$ADDRESS" --network "$NETWORK" --output json 2>&1); then
+            EXIT_CODE=0
+        else
+            EXIT_CODE=$?
+        fi
         ;;
     cancel)
         log_info "Canceling proposed admin"
-        RESULT=$("${CLI_CMD[@]}" treasury admin cancel "$ADDRESS" --network "$NETWORK" --output json 2>&1)
+        if RESULT=$("${CLI_CMD[@]}" treasury admin cancel "$ADDRESS" --network "$NETWORK" --output json 2>&1); then
+            EXIT_CODE=0
+        else
+            EXIT_CODE=$?
+        fi
         ;;
 esac
-
-EXIT_CODE=$?
 
 if [[ $EXIT_CODE -eq 0 ]]; then
     log_info "Admin action '$ACTION' completed successfully"

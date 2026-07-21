@@ -176,8 +176,11 @@ else
 fi
 
 # Execute the withdraw command safely using array expansion
-RESULT=$("${CLI_CMD[@]}" treasury withdraw "$ADDRESS" "$AMOUNT" --network "$NETWORK" --output json 2>&1)
-EXIT_CODE=$?
+if RESULT=$("${CLI_CMD[@]}" treasury withdraw "$ADDRESS" "$AMOUNT" --network "$NETWORK" --output json 2>&1); then
+    EXIT_CODE=0
+else
+    EXIT_CODE=$?
+fi
 
 if [[ $EXIT_CODE -eq 0 ]]; then
     log_info "Withdrawal successful"

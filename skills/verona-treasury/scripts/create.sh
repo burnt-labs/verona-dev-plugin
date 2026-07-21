@@ -235,8 +235,11 @@ fi
 
 # Execute CLI command safely using array expansion
 log_info "Executing: ${CMD[*]}"
-RESULT=$("${CMD[@]}" 2>&1)
-EXIT_CODE=$?
+if RESULT=$("${CMD[@]}" 2>&1); then
+    EXIT_CODE=0
+else
+    EXIT_CODE=$?
+fi
 
 if [ $EXIT_CODE -eq 0 ]; then
     # Success - output the JSON from CLI

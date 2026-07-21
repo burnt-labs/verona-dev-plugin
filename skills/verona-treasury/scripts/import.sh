@@ -20,6 +20,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=security-utils.sh
+source "$SCRIPT_DIR/security-utils.sh"
+
 # ==============================================================================
 # Helper Functions
 # ==============================================================================
@@ -159,8 +163,11 @@ fi
 log_info "Executing: ${CMD[*]}"
 
 # Execute command safely using array expansion
-RESULT=$("${CMD[@]}" 2>&1)
-EXIT_CODE=$?
+if RESULT=$("${CMD[@]}" 2>&1); then
+    EXIT_CODE=0
+else
+    EXIT_CODE=$?
+fi
 
 if [[ $EXIT_CODE -eq 0 ]]; then
     if [[ "$DRY_RUN" == "true" ]]; then
@@ -171,10 +178,6 @@ if [[ $EXIT_CODE -eq 0 ]]; then
     output_json "$RESULT"
 else
     log_error "Import failed: $RESULT"
-    output_json "{
-        \"success\": false,
-        \"error\": \"Import failed: $RESULT\",
-        \"error_code\": \"IMPORT_FAILED\"
-    }"
+    output_json "$(build_error_json "Import failed: $RESULT" "IMPORT_FAILED")"
     exit 1
 fi

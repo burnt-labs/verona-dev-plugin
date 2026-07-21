@@ -254,6 +254,22 @@ validate_url() {
 }
 
 # ==============================================================================
+# JSON Helpers
+# ==============================================================================
+
+# json_escape - Escape a string for safe JSON embedding
+json_escape() {
+    python3 -c 'import json,sys; print(json.dumps(sys.argv[1]))' "$1"
+}
+
+# build_error_json - Build a JSON error payload with properly escaped messages
+build_error_json() {
+    local message="$1"
+    local code="${2:-UNKNOWN_ERROR}"
+    python3 -c 'import json,sys; print(json.dumps({"success": False, "error": sys.argv[1], "error_code": sys.argv[2]}))' "$message" "$code"
+}
+
+# ==============================================================================
 # Utility Functions
 # ==============================================================================
 
@@ -294,4 +310,5 @@ format_coin() {
 # - log_audit
 # - confirm_operation, confirm_sensitive_operation
 # - validate_address, validate_amount, validate_url
+# - json_escape, build_error_json
 # - get_confirmation_env, format_coin

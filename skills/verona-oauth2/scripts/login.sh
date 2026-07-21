@@ -36,7 +36,9 @@ log_error() {
 handle_error() {
     local message="$1"
     local code="${2:-UNKNOWN_ERROR}"
-    output_json "{\"success\": false, \"error\": \"$message\", \"error_code\": \"$code\"}"
+    local payload
+    payload=$(python3 -c 'import json,sys; print(json.dumps({"success": False, "error": sys.argv[1], "error_code": sys.argv[2]}))' "$message" "$code")
+    output_json "$payload"
     exit 1
 }
 
@@ -121,8 +123,11 @@ log_info "Running: verona-toolkit $CMD_STR"
 
 # Execute verona-toolkit login command
 # Capture both stdout and stderr, but keep them separate
-RESULT=$(verona-toolkit --no-interactive "${CMD_ARGS[@]}" 2>&1)
-EXIT_CODE=$?
+if RESULT=$(verona-toolkit --no-interactive "${CMD_ARGS[@]}" 2>&1); then
+    EXIT_CODE=0
+else
+    EXIT_CODE=$?
+fi
 
 if [ $EXIT_CODE -eq 0 ]; then
     # Success - output the JSON result from CLI

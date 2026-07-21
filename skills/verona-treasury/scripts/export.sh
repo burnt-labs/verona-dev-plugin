@@ -19,6 +19,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=security-utils.sh
+source "$SCRIPT_DIR/security-utils.sh"
+
 # ==============================================================================
 # Helper Functions
 # ==============================================================================
@@ -124,8 +128,11 @@ CMD=(verona-toolkit --no-interactive treasury export "$ADDRESS" --network "$NETW
 # Execute command safely using array expansion
 if [[ -n "$OUTPUT_FILE" ]]; then
     log_info "Output file: $OUTPUT_FILE"
-    RESULT=$("${CMD[@]}" 2>&1)
-    EXIT_CODE=$?
+    if RESULT=$("${CMD[@]}" 2>&1); then
+        EXIT_CODE=0
+    else
+        EXIT_CODE=$?
+    fi
     
     if [[ $EXIT_CODE -eq 0 ]]; then
         echo "$RESULT" > "$OUTPUT_FILE"
@@ -137,27 +144,22 @@ if [[ -n "$OUTPUT_FILE" ]]; then
         }"
     else
         log_error "Export failed: $RESULT"
-        output_json "{
-            \"success\": false,
-            \"error\": \"Export failed: $RESULT\",
-            \"error_code\": \"EXPORT_FAILED\"
-        }"
+        output_json "$(build_error_json "Export failed: $RESULT" "EXPORT_FAILED")"
         exit 1
     fi
 else
     # Output to stdout
-    RESULT=$("${CMD[@]}" 2>&1)
-    EXIT_CODE=$?
+    if RESULT=$("${CMD[@]}" 2>&1); then
+        EXIT_CODE=0
+    else
+        EXIT_CODE=$?
+    fi
     
     if [[ $EXIT_CODE -eq 0 ]]; then
         output_json "$RESULT"
     else
         log_error "Export failed: $RESULT"
-        output_json "{
-            \"success\": false,
-            \"error\": \"Export failed: $RESULT\",
-            \"error_code\": \"EXPORT_FAILED\"
-        }"
+        output_json "$(build_error_json "Export failed: $RESULT" "EXPORT_FAILED")"
         exit 1
     fi
 fi

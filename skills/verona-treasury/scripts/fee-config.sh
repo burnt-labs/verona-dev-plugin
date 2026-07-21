@@ -15,6 +15,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=security-utils.sh
+source "$SCRIPT_DIR/security-utils.sh"
+
 # ==============================================================================
 # Helper Functions
 # ==============================================================================
@@ -220,8 +224,11 @@ CMD+=("$ADDRESS" --output json)
 log_info "Executing: ${CMD[*]}"
 
 # Execute command safely using array expansion
-RESULT=$("${CMD[@]}" 2>&1)
-EXIT_CODE=$?
+if RESULT=$("${CMD[@]}" 2>&1); then
+    EXIT_CODE=0
+else
+    EXIT_CODE=$?
+fi
 
 if [[ $EXIT_CODE -eq 0 ]]; then
     log_info "Fee config operation completed successfully"
@@ -229,10 +236,6 @@ if [[ $EXIT_CODE -eq 0 ]]; then
 else
     log_error "Command failed with exit code $EXIT_CODE"
     log_error "Output: $RESULT"
-    output_json "{
-        \"success\": false,
-        \"error\": \"Command failed: $RESULT\",
-        \"error_code\": \"COMMAND_FAILED\"
-    }"
+    output_json "$(build_error_json "Command failed: $RESULT" "COMMAND_FAILED")"
     exit 1
 fi
