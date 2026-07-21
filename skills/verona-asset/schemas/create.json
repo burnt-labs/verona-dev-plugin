@@ -61,7 +61,7 @@
     {
       "code": "INVALID_MINTER_ADDRESS",
       "description": "Invalid minter address format",
-      "remediation": "Provide a valid Xion address starting with 'xion1'"
+      "remediation": "Provide a valid Verona address starting with 'xion1'"
     },
     {
       "code": "INSTANTIATE_FAILED",

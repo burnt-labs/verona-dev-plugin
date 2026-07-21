@@ -1,7 +1,7 @@
 ---
 name: verona-asset
 description: |
-  Asset Builder skill for CW721 NFT operations on Verona/Xion. Use this skill when users want to:
+  Asset Builder skill for CW721 NFT operations on Verona. Use this skill when users want to:
   - Create NFT collections
   - Mint NFT tokens (standard or with royalties)
   - Predict contract addresses before deployment
@@ -10,7 +10,7 @@ description: |
   
   Supports 5 NFT types: cw721-base, cw2981-royalties, cw721-expiration, cw721-metadata-onchain, cw721-non-transferable.
   
-  Triggers on: NFT, CW721, CW721 NFT, NFT collection, NFT token, mint NFT, minting, create NFT collection, NFT royalties, NFT royalty, NFT soulbound, non-transferable NFT, expirable NFT, on-chain metadata NFT, metadata-onchain, predict NFT address, batch mint NFT, batch mint tokens, mint multiple NFTs, NFT contract, NFT on Xion, Xion NFT, CosmWasm NFT, CosmWasm 721, asset builder, NFT 徽章, NFT 凭证, 创建 NFT, 铸造 NFT, NFT 版税.
+  Triggers on: NFT, CW721, CW721 NFT, NFT collection, NFT token, mint NFT, minting, create NFT collection, NFT royalties, NFT royalty, NFT soulbound, non-transferable NFT, expirable NFT, on-chain metadata NFT, metadata-onchain, predict NFT address, batch mint NFT, batch mint tokens, mint multiple NFTs, NFT contract, NFT on Verona, Verona NFT, CosmWasm NFT, CosmWasm 721, asset builder, NFT 徽章, NFT 凭证, 创建 NFT, 铸造 NFT, NFT 版税.
 metadata:
   author: burnt-labs
   version: "1.2.0"
@@ -22,7 +22,7 @@ metadata:
 
 # verona-asset
 
-CW721 NFT Asset Builder for Xion blockchain. Create, mint, and manage NFT collections with gasless transactions.
+CW721 NFT Asset Builder for Verona. Create, mint, and manage NFT collections with gasless transactions.
 
 ## Prerequisites
 

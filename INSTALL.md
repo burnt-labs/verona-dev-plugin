@@ -23,7 +23,7 @@ Use any directory you prefer; replace `~/verona-dev-plugin` below with your chec
 |-----------|----------|--------|
 | Host manifests | `.cursor-plugin/`, `.codex-plugin/`, `.claude-plugin/`, `.kimi-plugin/` | Available |
 | Shared skills | `skills/` | Available (vdp-002 corpus) |
-| Session entry | `verona-dev` skill + `hooks/` | Auto on Cursor, Kimi, Claude; manual on Codex |
+| Session entry | `verona-dev` skill + `hooks/` | Auto on Cursor, Codex, Claude, Kimi (Codex requires trusting plugin hooks) |
 
 Each host discovers skills from the shared `skills/` tree per its manifest conventions.
 
@@ -111,9 +111,16 @@ When published to an official or community Codex marketplace, use `codex plugin 
 
 ### Session entry (v0.1)
 
-**Manual only:** mention or invoke the **`verona-dev`** skill at the start of each session. The Codex plugin manifest has **no** automatic `sessionStart` hook in v0.1.
+**Automatic via hooks** after you trust the plugin's hooks (Codex requires explicit trust before plugin hooks run — use `/hooks` or the trust prompt).
 
-Manifest: `.codex-plugin/plugin.json` (`skills`: `./skills/`).
+| Mode | Behavior |
+|------|----------|
+| Trusted hooks | `hooks/hooks.json` SessionStart → `hooks/session-start` injects `verona-dev` entry context (`additionalContext`) |
+| Fallback | Mention or invoke the **`verona-dev`** skill manually |
+
+Manifest: `.codex-plugin/plugin.json` (`skills`: `./skills/`, `hooks`: `./hooks/hooks.json`).
+
+Docs: [Build Codex plugins](https://learn.chatgpt.com/docs/build-plugins) (hooks field) · [Codex hooks](https://developers.openai.com/codex/hooks) (SessionStart schema).
 
 ---
 
@@ -181,7 +188,7 @@ Manifest: `.claude-plugin/plugin.json`. Hooks: `hooks/hooks.json` (discovered by
 
 1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh).
 2. Confirm the plugin name **`verona-dev-plugin`** appears in the host's plugin list.
-3. On **Cursor**, **Kimi**, and **Claude Code**, session entry for **`verona-dev`** loads automatically when hooks/manifest are active. On **Codex**, invoke **`verona-dev`** manually at session start.
+3. On **Cursor**, **Kimi**, **Claude Code**, and **Codex**, session entry for **`verona-dev`** loads automatically when hooks/manifest are active. On **Codex**, trust plugin hooks first (`/hooks` or the trust prompt).
 
 ## Updating
 

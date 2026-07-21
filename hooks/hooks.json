@@ -6,7 +6,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/session-start\"",
+            "command": "bash -c 'root=\"${CLAUDE_PLUGIN_ROOT:-}\"; [ -n \"$root\" ] || root=\"${PLUGIN_ROOT:-}\"; exec \"$root/hooks/session-start\"'",
+            "statusMessage": "Loading Verona entry context",
             "async": false
           }
         ]

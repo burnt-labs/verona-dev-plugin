@@ -1,6 +1,6 @@
 ---
 name: verona-oauth2
-description: "OAuth2 authentication for Verona/Xion MetaAccount; prefer auth refresh over auth login when credentials exist. Use for verona login, xion login, token refresh, MetaAccount auth, or before Treasury/NFT work. Not for OAuth2 client CRUD (use verona-oauth2-client)."
+description: "OAuth2 authentication for Verona MetaAccount; prefer auth refresh over auth login when credentials exist. Use for verona login, xion login, token refresh, MetaAccount auth, or before Treasury/NFT work. Not for OAuth2 client CRUD (use verona-oauth2-client)."
 metadata:
   author: burnt-labs
   version: "1.2.2"
@@ -13,11 +13,11 @@ metadata:
 
 # verona-oauth2
 
-OAuth2 authentication skill for Xion blockchain development. This skill enables AI agents to authenticate with Xion's **MetaAccount** system using browser-based OAuth2 flow with PKCE security.
+OAuth2 authentication skill for Verona development. This skill enables AI agents to authenticate with Verona's **MetaAccount** system using browser-based OAuth2 flow with PKCE security.
 
 ## Triggers
 
-Xion login, authentication, MetaAccount login, OAuth2 xion, token expired, refresh token, access token, session key, xion 认证, xion 登录, gasless auth, token issues, credential errors. Commands: `auth status`, `auth refresh` (preferred), `auth login`, `auth login --force`, `auth login --dev-mode`.
+Verona login, authentication, MetaAccount login, OAuth2 xion, token expired, refresh token, access token, session key, xion 认证, xion 登录, gasless auth, token issues, credential errors. Commands: `auth status`, `auth refresh` (preferred), `auth login`, `auth login --force`, `auth login --dev-mode`.
 
 ## Why MetaAccount?
 
@@ -93,7 +93,7 @@ This skill wraps the `verona-toolkit` CLI tool to provide Agent-friendly OAuth2 
 
 - `verona-toolkit` CLI tool installed and in PATH
 - Browser available for OAuth2 authorization
-- Network connectivity to Xion OAuth2 API
+- Network connectivity to Verona OAuth2 API
 
 > **Note**: If `verona-toolkit` is not installed, use the `verona-toolkit-init` skill first.
 
@@ -120,7 +120,7 @@ If you have existing credentials, refresh them first:
 ```
 
 This will:
-1. Open your browser to the Xion authorization page
+1. Open your browser to the Verona authorization page
 2. Wait for you to approve the authorization
 3. Return authentication status as JSON
 
@@ -307,7 +307,7 @@ See `references/integration-examples.md` for Claude Code and programmatic usage 
 
 ## Related Skills
 
-- **verona-dev** - Unified entry point for Xion development
+- **verona-dev** - Unified entry point for Verona development
 - **verona-treasury** - Treasury management (requires authentication)
 - **verona-toolkit-init** - CLI installation (use if CLI not found)
 - **verona-bin** - Chain-level queries and CosmWasm (`xiond` CLI)

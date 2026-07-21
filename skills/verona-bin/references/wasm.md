@@ -1,6 +1,6 @@
 # CosmWasm deploy and interact
 
-Deploy and manage CosmWasm smart contracts on Verona / Xion using **`xiond`**. Covers optimize → upload → instantiate → query/execute → migrate.
+Deploy and manage CosmWasm smart contracts on Verona using **`xiond`**. Covers optimize → upload → instantiate → query/execute → migrate.
 
 Install `xiond` first (`init.md`). For gasless contract ops after deploy, use `verona-treasury` / `verona-toolkit`.
 
@@ -176,7 +176,7 @@ Address and state are preserved; logic comes from the new code.
 
 Counter reference: https://github.com/burnt-labs/cw-counter
 
-Official guide: [Deploy a CosmWasm smart contract](https://docs.burnt.com/xion/developers/getting-started-advanced/your-first-contract/deploy-a-cosmwasm-smart-contract)
+Official guide: [Deploy a CosmWasm smart contract](https://docs.verona.dev/en/build-on-verona/computation/local-development/deploy-a-cosmwasm-smart-contract)
 
 CosmWasm docs: https://docs.cosmwasm.com/
 

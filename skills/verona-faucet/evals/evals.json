@@ -4,7 +4,7 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "I just created a new Xion testnet account and need some tokens to start testing my dApp. Can you help me get some?",
+      "prompt": "I just created a new Verona testnet account and need some tokens to start testing my dApp. Can you help me get some?",
       "expected_output": "Should guide user through faucet claim process: (1) authenticate with verona-toolkit auth login, (2) check status with verona-toolkit faucet status, (3) claim with verona-toolkit faucet claim. Should NOT immediately try to claim without authentication check.",
       "files": [],
       "triggers": ["claim", "testnet tokens", "new account"]

@@ -197,7 +197,7 @@ confirm_sensitive_operation() {
 # Input Validation Functions
 # ==============================================================================
 
-# validate_address - Validate Xion address format
+# validate_address - Validate Verona address format (bech32 prefix xion1)
 # Usage: validate_address "xion1..." || exit 1
 validate_address() {
     local address="$1"
@@ -208,7 +208,7 @@ validate_address() {
     fi
     
     if [[ ! "$address" =~ ^xion1[a-z0-9]{58}$ ]]; then
-        log_error "Invalid Xion address format: $address"
+        log_error "Invalid Verona address format: $address"
         log_error "Expected format: xion1... (58 characters after xion1)"
         return 1
     fi

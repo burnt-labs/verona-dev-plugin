@@ -90,7 +90,7 @@ done
 # Main Logic
 # ==============================================================================
 
-log_info "Starting Xion OAuth2 login..."
+log_info "Starting Verona OAuth2 login..."
 
 # Check if verona-toolkit CLI is available
 if ! command -v verona-toolkit &> /dev/null; then

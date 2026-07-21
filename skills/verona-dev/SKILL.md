@@ -1,7 +1,7 @@
 ---
 name: verona-dev
 description: |
-  Default entry router for ALL Verona and Xion development in this plugin. Use this skill whenever the user mentions Verona, Xion, MetaAccount, gasless auth, Treasury, OAuth2, xiond, CosmWasm, testnet faucet, NFT minting, or building on Burnt Labs — even if they do not say "verona-dev" or "toolkit".
+  Default entry router for ALL Verona development in this plugin. Use this skill whenever the user mentions Verona, MetaAccount, gasless auth, Treasury, OAuth2, xiond, CosmWasm, testnet faucet, NFT minting, or building on Burnt Labs — even if they do not say "verona-dev" or "toolkit".
 
   Routes MetaAccount and toolkit work to in-plugin skills; routes chain queries, txs, xiond install, and CosmWasm to verona-bin. Do not treat external xion-skills repos as the primary install path.
 
@@ -24,7 +24,7 @@ metadata:
 
 # verona-dev
 
-Session entry for Verona / Xion work in **verona-dev-plugin**. Read this skill first, then load the routed skill below.
+Session entry for Verona work in **verona-dev-plugin**. Read this skill first, then load the routed skill below.
 
 ## Philosophy
 
@@ -91,5 +91,5 @@ Changelog: https://github.com/burnt-labs/verona-dev-plugin/releases
 
 ## Resources
 
-- [Xion Documentation](https://docs.burnt.com/xion)
+- [Verona Documentation](https://docs.verona.dev/en)
 - [verona-dev-plugin](https://github.com/burnt-labs/verona-dev-plugin)

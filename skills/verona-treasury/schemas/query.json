@@ -48,7 +48,7 @@
     {
       "code": "INVALID_ADDRESS",
       "description": "Invalid treasury address format",
-      "remediation": "Provide a valid Xion address starting with 'xion1'"
+      "remediation": "Provide a valid Verona address starting with 'xion1'"
     },
     {
       "code": "TREASURY_NOT_FOUND",

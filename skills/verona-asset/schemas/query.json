@@ -60,7 +60,7 @@
     {
       "code": "INVALID_CONTRACT_ADDRESS",
       "description": "Invalid contract address format",
-      "remediation": "Provide a valid Xion address starting with 'xion1'"
+      "remediation": "Provide a valid Verona address starting with 'xion1'"
     },
     {
       "code": "INVALID_QUERY_MSG",

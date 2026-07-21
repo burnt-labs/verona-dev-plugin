@@ -99,12 +99,12 @@
     {
       "code": "INVALID_CONTRACT_ADDRESS",
       "description": "Invalid contract address format",
-      "remediation": "Provide a valid Xion address starting with 'xion1'"
+      "remediation": "Provide a valid Verona address starting with 'xion1'"
     },
     {
       "code": "INVALID_OWNER_ADDRESS",
       "description": "Invalid owner address format",
-      "remediation": "Provide a valid Xion address starting with 'xion1'"
+      "remediation": "Provide a valid Verona address starting with 'xion1'"
     },
     {
       "code": "TOKEN_ID_EXISTS",

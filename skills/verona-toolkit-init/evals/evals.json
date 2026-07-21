@@ -1,7 +1,7 @@
 {
   "skill_name": "verona-toolkit-init",
   "evals": [
-    {"id": 1, "prompt": "I want to start building on Xion", "expected_output": "Guide to install verona-toolkit"},
+    {"id": 1, "prompt": "I want to start building on Verona", "expected_output": "Guide to install verona-toolkit"},
     {"id": 2, "prompt": "帮我安装 xion 开发工具", "expected_output": "Chinese installation guidance"},
     {"id": 3, "prompt": "Install verona-toolkit and xiond CLI", "expected_output": "Guide to verona-toolkit-init and verona-bin skills"},
     {"id": 4, "prompt": "Check if verona-toolkit is installed", "expected_output": "Guide to verify installation"},

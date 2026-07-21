@@ -1,6 +1,6 @@
 ---
 name: verona-treasury
-description: "Treasury management for Verona/Xion MetaAccount gasless transactions (create, fund, withdraw, authz/fee grants). Use when the user mentions Treasury, fee allowance, authz grant, or treasury operations on Verona/Xion. Requires verona-oauth2; use verona-bin for chain-only queries."
+description: "Treasury management for Verona MetaAccount gasless transactions (create, fund, withdraw, authz/fee grants). Use when the user mentions Treasury, fee allowance, authz grant, or treasury operations on Verona. Requires verona-oauth2; use verona-bin for chain-only queries."
 metadata:
   author: burnt-labs
   version: "1.2.2"
@@ -14,7 +14,7 @@ compatibility: Requires verona-toolkit CLI and OAuth2 authentication
 
 # verona-treasury
 
-Treasury management skill for Xion blockchain. Enables **gasless transactions** through Treasury contracts with fee grants and authz grants.
+Treasury management skill for Verona. Enables **gasless transactions** through Treasury contracts with fee grants and authz grants.
 
 ## Triggers
 
@@ -22,7 +22,7 @@ Treasury, MetaAccount Treasury, gasless 交易, gasless transactions, 无 gas �
 
 ## Core Philosophy: Gasless Transactions
 
-Treasury contracts enable gasless transactions on Xion:
+Treasury contracts enable gasless transactions on Verona:
 - **Fee Grants** - Treasury pays transaction fees for authorized agents
 - **Authz Grants** - Delegated authorization for specific message types
 - **MetaAccount** - No mnemonic required, OAuth2 authentication
@@ -301,7 +301,7 @@ verona-toolkit treasury list --no-cache
 
 ## Related Skills
 
-- **verona-dev** - Unified entry point for Xion development
+- **verona-dev** - Unified entry point for Verona development
 - **verona-oauth2** - Authentication (use before this skill)
 - **verona-oauth2-client** - OAuth client lifecycle; after treasury redirect/branding changes run `oauth2 client sync-from-treasury`
 - **verona-toolkit-init** - CLI installation (use if CLI not found)

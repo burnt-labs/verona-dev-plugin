@@ -1,7 +1,7 @@
 ---
 name: verona-faucet
 description: |
-  Claim testnet tokens from the Verona/Xion faucet contract. Use this skill whenever the user needs testnet XION tokens for development or testing, wants to check faucet status or cooldown, or needs to query faucet configuration.
+  Claim testnet tokens from the Verona faucet contract. Use this skill whenever the user needs testnet XION tokens for development or testing, wants to check faucet status or cooldown, or needs to query faucet configuration.
   
   The faucet provides 1 XION (1,000,000 uxion) per claim with a 24-hour cooldown period.
   
@@ -25,22 +25,27 @@ Faucet skill for claiming testnet XION tokens. Enables developers to obtain test
 
 ## Overview
 
-The Xion testnet faucet is a smart contract that distributes testnet XION tokens:
+The Verona testnet faucet distributes testnet XION tokens.
 
 | Feature | Value |
 |---------|-------|
+| **Web faucet** | https://dev.testnet.burnt.com/faucet |
 | **Amount per claim** | 1,000,000 uxion (1 XION) |
 | **Cooldown period** | 24 hours |
 | **Balance threshold** | Receiver must have < 1 XION |
 | **Network** | Testnet only |
 
+Docs: [Testnet tokens](https://docs.verona.dev/en/build-on-verona/references/testnet-tokens).
+
+For browser claims, open the web faucet (no sign-in required). For CLI claims via `verona-toolkit`, use this skill.
+
 ## Prerequisites
 
 1. `verona-toolkit` CLI installed (use `verona-toolkit-init` if not present)
-2. **Authenticated** with `verona-oauth2` skill (required for `claim` command)
+2. **Authenticated** with `verona-oauth2` skill (required for CLI `claim` command)
 3. **Network**: Testnet (faucet not available on mainnet)
 
-> **Important**: Always authenticate first using `verona-toolkit auth login` before claiming tokens.
+> **Important**: For CLI claims, always authenticate first using `verona-toolkit auth login`.
 
 ## Quick Start
 

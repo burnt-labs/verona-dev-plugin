@@ -8,7 +8,7 @@
   "tools": [
     {
       "name": "xion_login",
-      "description": "Authenticate with Xion blockchain",
+      "description": "Authenticate with Verona",
       "command": "./skills/verona-oauth2/scripts/login.sh"
     }
   ]

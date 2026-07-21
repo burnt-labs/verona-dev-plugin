@@ -1,6 +1,6 @@
 ---
 name: verona-toolkit-init
-description: "Guides verona-toolkit CLI installation for Verona/Xion MetaAccount development (guidance only; agent runs install commands when asked). Use for verona setup, xion setup, install toolkit, MetaAccount onboarding, or toolkit upgrade."
+description: "Guides verona-toolkit CLI installation for Verona MetaAccount development (guidance only; agent runs install commands when asked). Use for verona setup, xion setup, install toolkit, MetaAccount onboarding, or toolkit upgrade."
 metadata:
   author: burnt-labs
   version: "2.0.0"
@@ -13,7 +13,7 @@ metadata:
 
 # verona-toolkit-init
 
-Guides installation of the `verona-toolkit` CLI for Xion MetaAccount development. This CLI provides OAuth2 authentication and Treasury management for gasless transactions.
+Guides installation of the `verona-toolkit` CLI for Verona MetaAccount development. This CLI provides OAuth2 authentication and Treasury management for gasless transactions.
 
 ## Triggers
 

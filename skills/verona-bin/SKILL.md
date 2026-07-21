@@ -6,7 +6,7 @@ description: |
 
   Use for xiond install, xiond upgrade, validator setup, chain query, tx status,
   balance query, mnemonic wallet, cosmwasm, contract deploy, wasm upload/instantiate,
-  execute contract, migrate contract, and traditional Cosmos SDK workflows on Xion.
+  execute contract, migrate contract, and traditional Cosmos SDK workflows on Verona.
 
   The skill is Verona-branded; the installed binary remains `xiond` (see
   references/cli-rename-note.md). For MetaAccount gasless flows use verona-toolkit skills instead.
@@ -25,7 +25,7 @@ metadata:
 
 # verona-bin
 
-Single entry for Verona / Xion **`xiond`** CLI work: installation, chain operations, and CosmWasm. Read the reference that matches the user intent; do not load all references up front.
+Single entry for Verona **`xiond`** CLI work: installation, chain operations, and CosmWasm. Read the reference that matches the user intent; do not load all references up front.
 
 ## Route by intent
 
