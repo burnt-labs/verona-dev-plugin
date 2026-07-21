@@ -31,14 +31,41 @@ escape_for_json() {
   printf '%s' "$s"
 }
 
-session_context_escaped="$(escape_for_json "$session_context" 2>/dev/null || escape_for_json "$STATIC_CONTEXT")"
+emit_hook_json() {
+  if command -v python3 >/dev/null 2>&1; then
+    printf '%s' "$session_context" | python3 -c '
+import json, os, sys
 
-if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
-  printf '{\n  "additional_context": "%s"\n}\n' "$session_context_escaped"
-elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
-  printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$session_context_escaped"
-else
-  printf '{\n  "additionalContext": "%s"\n}\n' "$session_context_escaped"
-fi
+context = sys.stdin.read()
+if os.environ.get("CURSOR_PLUGIN_ROOT"):
+    payload = {"additional_context": context}
+elif os.environ.get("CLAUDE_PLUGIN_ROOT") and not os.environ.get("COPILOT_CLI"):
+    payload = {
+        "hookSpecificOutput": {
+            "hookEventName": "SessionStart",
+            "additionalContext": context,
+        }
+    }
+else:
+    payload = {"additionalContext": context}
+
+print(json.dumps(payload, indent=2, ensure_ascii=False))
+'
+    return
+  fi
+
+  local session_context_escaped
+  session_context_escaped="$(escape_for_json "$session_context" 2>/dev/null || escape_for_json "$STATIC_CONTEXT")"
+
+  if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+    printf '{\n  "additional_context": "%s"\n}\n' "$session_context_escaped"
+  elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+    printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$session_context_escaped"
+  else
+    printf '{\n  "additionalContext": "%s"\n}\n' "$session_context_escaped"
+  fi
+}
+
+emit_hook_json
 
 exit 0

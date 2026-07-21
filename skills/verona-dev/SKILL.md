@@ -83,11 +83,9 @@ Frontend framework choice (React, Next, Vue, Svelte, etc.), dApp wiring norms, a
 skills/verona-dev/scripts/validate-params.sh verona-treasury grant-config-add '{"address": "xion1...", "preset": "send"}'
 ```
 
-## Install / update skills
+## Install / update
 
-```bash
-npx skills add burnt-labs/verona-dev-plugin -g -y -a cursor -a claude-code -a codex -a openclaw
-```
+Manual host install only — see [INSTALL.md](../../INSTALL.md) at the plugin repository root (Cursor local path or marketplace, Kimi, Claude Code, Codex). There is no `npx` package or install CLI for this plugin.
 
 Changelog: https://github.com/burnt-labs/verona-dev-plugin/releases
 
