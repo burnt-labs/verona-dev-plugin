@@ -1,10 +1,10 @@
 # Verona Dev Plugin
 
-Build [Verona](https://verona.dev/) apps with Burnt Labs skills inside your coding agent. Docs: [docs.verona.dev](https://docs.verona.dev/en).
+Build [Verona](https://verona.dev/) apps with Burnt Labs skills inside your coding agent.
 
 This plugin gives your agent a shared set of Verona skills — MetaAccount auth, toolkit flows, and `xiond` / CosmWasm helpers — so you spend less time re-explaining the stack every session.
 
-It works with **Cursor**, **Codex**, **Claude Code**, and **Kimi**. Install once through your host’s normal plugin or path install flow. There is no separate installer CLI.
+It works with **Cursor**, **Codex**, **Claude Code**, and **Kimi**. Install once through your host’s normal plugin or path install flow.
 
 ## What it does
 
