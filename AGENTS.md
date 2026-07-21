@@ -4,7 +4,7 @@ This repository is the Burnt Labs **Verona Dev Plugin** — a multi-host agent s
 
 ## Session entry
 
-The primary entry skill is **`verona-dev`**. Use it at session start for Verona / Xion development context. Host-specific auto-load (Cursor, Kimi, Claude hooks) is added in vdp-003; until then, invoke `verona-dev` manually where the host does not auto-start it.
+The primary entry skill is **`verona-dev`**. Use it at session start for Verona / Xion development context. Host-specific auto-load (Cursor, Kimi, Claude hooks) arrives in a follow-up update; until then, invoke `verona-dev` manually on every host.
 
 Shared skills live under `skills/` (populated in vdp-002). Install per host: [INSTALL.md](INSTALL.md).
 

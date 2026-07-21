@@ -10,7 +10,7 @@ Install once per coding agent host (Cursor, Codex, Claude Code, Kimi) using each
 |-----------|----------|--------|
 | Host manifests | `.cursor-plugin/`, `.codex-plugin/`, `.claude-plugin/`, `.kimi-plugin/` | Available |
 | Shared skills | `skills/` | Populated in a follow-up release (vdp-002) |
-| Session entry | `verona-dev` skill | Auto hooks wired in vdp-003; manual mention works today on Codex |
+| Session entry | `verona-dev` skill | Manual invoke in v0.1; auto session hooks in a follow-up update |
 
 Each host discovers skills from the shared `skills/` tree per its manifest conventions.
 
@@ -19,7 +19,7 @@ Each host discovers skills from the shared `skills/` tree per its manifest conve
 1. Clone this repository (or install from a published path — see [INSTALL.md](INSTALL.md)).
 2. Follow the install section for your host in [INSTALL.md](INSTALL.md).
 3. Reload or restart the host after install.
-4. At session start, invoke the **`verona-dev`** skill (automatically once session hooks land in vdp-003; manual on Codex until then).
+4. At session start, invoke the **`verona-dev`** skill manually (automatic entry once session hooks ship in a follow-up update).
 
 ## Supported hosts
 
@@ -39,7 +39,7 @@ verona-dev-plugin/
 ├── .claude-plugin/plugin.json
 ├── .kimi-plugin/plugin.json
 ├── skills/                 # Shared skill corpus (vdp-002)
-├── hooks/                  # Session hooks (vdp-003)
+├── hooks/                  # Session hooks (follow-up update)
 ├── README.md
 ├── INSTALL.md
 ├── AGENTS.md

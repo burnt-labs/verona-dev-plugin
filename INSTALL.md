@@ -23,7 +23,7 @@ Use any directory you prefer; replace `~/verona-dev-plugin` below with your chec
 |-------|------|-------|
 | Plugin manifests | `.cursor-plugin/`, `.codex-plugin/`, `.claude-plugin/`, `.kimi-plugin/` | Host discovery |
 | Skills | `skills/` | Placeholder until vdp-002 migrates the Verona skill corpus |
-| Session hooks | `hooks/` | Wired in vdp-003 (`verona-dev` entry) |
+| Session hooks | `hooks/` | Shipped in a follow-up update (`verona-dev` entry) |
 
 ---
 
@@ -50,8 +50,8 @@ When listed in the Cursor plugin marketplace, search for **verona-dev-plugin** o
 
 | Mode | Behavior |
 |------|----------|
-| **After vdp-003** | Auto via `hooks/hooks-cursor.json` → loads `verona-dev` context |
-| **Today** | Mention or invoke the `verona-dev` skill at session start |
+| **After a follow-up update** | Auto via `hooks/hooks-cursor.json` → loads `verona-dev` context |
+| **Today (v0.1)** | Mention or invoke the `verona-dev` skill at session start |
 
 Manifest: `.cursor-plugin/plugin.json` (`skills`: `./skills/`).
 
@@ -134,8 +134,8 @@ If your Kimi build supports path install, point at your clone root (the director
 
 | Mode | Behavior |
 |------|----------|
-| **After vdp-003** | Auto via `sessionStart.skill: "verona-dev"` in `.kimi-plugin/plugin.json` |
-| **Today** | Manifest reserves `sessionStart`; invoke **`verona-dev`** manually until hooks ship |
+| **After a follow-up update** | Auto via `sessionStart.skill: "verona-dev"` in `.kimi-plugin/plugin.json` |
+| **Today (v0.1)** | Invoke **`verona-dev`** manually at session start |
 
 Manifest: `.kimi-plugin/plugin.json` (`skills`: `./skills/`).
 
@@ -166,8 +166,8 @@ Claude discovers `skills/` by convention (sibling to `.claude-plugin/`).
 
 | Mode | Behavior |
 |------|----------|
-| **After vdp-003** | Auto via `hooks/hooks.json` SessionStart hook when enabled |
-| **Today** | Invoke **`/verona-dev`** (or mention the skill) at session start |
+| **After a follow-up update** | Auto via `hooks/hooks.json` SessionStart hook when enabled |
+| **Today (v0.1)** | Invoke **`/verona-dev`** (or mention the skill) at session start |
 
 Manifest: `.claude-plugin/plugin.json`.
 
@@ -177,7 +177,7 @@ Manifest: `.claude-plugin/plugin.json`.
 
 1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh).
 2. Confirm the plugin name **`verona-dev-plugin`** appears in the host's plugin list.
-3. Start a session with the **`verona-dev`** skill (manual on Codex; automatic once vdp-003 hooks are in place on other hosts).
+3. Start a session with the **`verona-dev`** skill manually on every host until session hooks ship in a follow-up update.
 
 ## Updating
 

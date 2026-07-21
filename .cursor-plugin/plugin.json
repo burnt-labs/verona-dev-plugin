@@ -7,6 +7,5 @@
     "name": "Burnt Labs"
   },
   "license": "Apache-2.0",
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks-cursor.json"
+  "skills": "./skills/"
 }
