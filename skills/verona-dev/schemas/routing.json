@@ -69,14 +69,14 @@
     },
     "app-sdk-networks": {
       "intent_lane": "app-sdk",
-      "keywords": ["chain id", "testnet-2", "mainnet-1", "rpc endpoint", "oauth host"],
+      "keywords": ["chain id", "testnet-2", "mainnet-1", "xion-testnet-2", "xion-mainnet-1", "rpc endpoint", "oauth host"],
       "skill": "verona-dev",
       "reference": "references/networks.md",
       "priority": 1
     },
     "login": {
       "intent_lane": "cli",
-      "keywords": ["login", "OAuth2", "authenticate", "sign in", "登录", "认证", "MetaAccount 登录"],
+      "keywords": ["login", "oauth2", "OAuth2", "authenticate", "sign in", "gasless auth", "登录", "认证", "MetaAccount 登录"],
       "skill": "verona-oauth2",
       "priority": 1
     },

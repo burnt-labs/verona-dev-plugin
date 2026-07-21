@@ -7,27 +7,27 @@
     {"id": 4, "prompt": "Deploy a CosmWasm contract on Verona", "expected_output": "Route to verona-bin skill"},
     {"id": 5, "prompt": "I need testnet tokens", "expected_output": "Route to verona-faucet skill"},
     {
-      "id": "preferred",
+      "id": 6,
       "prompt": "Help me build a React dApp with Abstraxion on XION testnet",
       "expected_output": "Read references/xion-js-web.md (and references/networks.md if needed)"
     },
     {
-      "id": "alternate-mob",
+      "id": 7,
       "prompt": "I need Swift native signing for XION transactions",
       "expected_output": "Read references/mob.md"
     },
     {
-      "id": "alternate-oauth",
+      "id": 8,
       "prompt": "Submit blockchain txs via OAuth REST without embedding an SDK",
       "expected_output": "Read references/oauth2-api-service.md"
     },
     {
-      "id": "negative-cli-login",
+      "id": 9,
       "prompt": "How do I login to Verona using the toolkit CLI?",
       "expected_output": "Route to verona-oauth2 — not references"
     },
     {
-      "id": "negative-cli-treasury",
+      "id": 10,
       "prompt": "Fund my treasury from the command line",
       "expected_output": "Route to verona-treasury — not references"
     }
