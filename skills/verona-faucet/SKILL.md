@@ -1,7 +1,7 @@
 ---
 name: verona-faucet
 description: |
-  Claim testnet tokens from the Verona/Xion faucet contract. Use this skill whenever the user needs testnet XION tokens for development or testing, wants to check faucet status or cooldown, or needs to query faucet configuration.
+  Claim testnet tokens from the Verona faucet contract. Use this skill whenever the user needs testnet XION tokens for development or testing, wants to check faucet status or cooldown, or needs to query faucet configuration.
   
   The faucet provides 1 XION (1,000,000 uxion) per claim with a 24-hour cooldown period.
   
@@ -25,7 +25,7 @@ Faucet skill for claiming testnet XION tokens. Enables developers to obtain test
 
 ## Overview
 
-The Xion testnet faucet is a smart contract that distributes testnet XION tokens:
+The Verona testnet faucet is a smart contract that distributes testnet XION tokens:
 
 | Feature | Value |
 |---------|-------|

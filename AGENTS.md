@@ -1,19 +1,19 @@
 # AGENTS.md
 
-This repository is the Burnt Labs **Verona Dev Plugin** — a multi-host agent skills plugin for Verona / Xion development.
+This repository is the Burnt Labs **Verona Dev Plugin** — a multi-host agent skills plugin for Verona development.
 
 ## Session entry
 
-The primary entry skill is **`verona-dev`**. Use it for Verona / Xion development context.
+The primary entry skill is **`verona-dev`**. Use it for Verona development context.
 
 | Host | Auto-entry (v0.1) |
 |------|-------------------|
 | **Cursor** | `hooks/hooks-cursor.json` → `hooks/session-start` |
 | **Kimi** | `sessionStart.skill: "verona-dev"` in `.kimi-plugin/plugin.json` |
 | **Claude Code** | `hooks/hooks.json` SessionStart → `hooks/session-start` |
-| **Codex** | Manual — invoke or mention **`verona-dev`** at session start (no manifest hook) |
+| **Codex** | `hooks/hooks.json` SessionStart → `hooks/session-start` (trust plugin hooks first) |
 
-Shared skills live under `skills/`. Install per host: [INSTALL.md](INSTALL.md).
+Shared skills live under `skills/`. Brand SVGs live under `assets/`. Install per host: [INSTALL.md](INSTALL.md).
 
 ## Local agent workspace
 

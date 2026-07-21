@@ -113,7 +113,7 @@
   "errors": [
     { "code": "EOAUTHCLIENT008", "description": "Not authenticated", "remediation": "Run 'verona-toolkit auth login' first" },
     { "code": "EOAUTHCLIENT010", "description": "Insufficient scope for MGR API", "remediation": "Re-authorize with xion:mgr:write scope (--dev-mode or full OAuth)" },
-    { "code": "EOAUTHCLIENT004", "description": "Treasury address required", "remediation": "Provide --treasury with a valid Xion address" },
+    { "code": "EOAUTHCLIENT004", "description": "Treasury address required", "remediation": "Provide --treasury with a valid Verona address" },
     { "code": "EOAUTHCLIENT011", "description": "Not the treasury admin", "remediation": "Only the treasury admin can create clients" }
   ],
   "examples": [

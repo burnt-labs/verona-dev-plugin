@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
-# SessionStart hook for verona-dev-plugin (Cursor, Claude Code, SDK fallback)
+# SessionStart hook for verona-dev-plugin
+# - Cursor: CURSOR_PLUGIN_ROOT → additional_context
+# - Claude Code / Codex: CLAUDE_PLUGIN_ROOT (Codex also sets PLUGIN_ROOT) →
+#   hookSpecificOutput.SessionStart.additionalContext
+# Codex docs: https://learn.chatgpt.com/docs/build-plugins (plugin hooks) +
+# https://developers.openai.com/codex/hooks (SessionStart output schema)
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-STATIC_CONTEXT='For Verona/Xion development in verona-dev-plugin, read and use the verona-dev skill (skills/verona-dev/SKILL.md). It routes MetaAccount/toolkit work to in-plugin skills and xiond/chain operations to verona-bin.'
+STATIC_CONTEXT='For Verona development in verona-dev-plugin, read and use the verona-dev skill (skills/verona-dev/SKILL.md). It routes MetaAccount/toolkit work to in-plugin skills and xiond/chain operations to verona-bin.'
 
 SKILL_PATH="${PLUGIN_ROOT}/skills/verona-dev/SKILL.md"
 session_context="$STATIC_CONTEXT"

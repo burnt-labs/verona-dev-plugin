@@ -1,6 +1,6 @@
 # CosmWasm deploy and interact
 
-Deploy and manage CosmWasm smart contracts on Verona / Xion using **`xiond`**. Covers optimize → upload → instantiate → query/execute → migrate.
+Deploy and manage CosmWasm smart contracts on Verona using **`xiond`**. Covers optimize → upload → instantiate → query/execute → migrate.
 
 Install `xiond` first (`init.md`). For gasless contract ops after deploy, use `verona-treasury` / `verona-toolkit`.
 

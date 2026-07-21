@@ -1,6 +1,6 @@
 {
   "command": "verona-dev routing",
-  "description": "Route user request to the appropriate Xion skill based on their needs",
+  "description": "Route user request to the appropriate Verona skill based on their needs",
   "parameters": [
     {
       "name": "user-intent",

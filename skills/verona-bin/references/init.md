@@ -1,6 +1,6 @@
 # Install and configure `xiond`
 
-Install, upgrade, and verify the `xiond` CLI for Verona / Xion chain work. See also `cli-rename-note.md` for the Verona branding vs `xiond` binary naming.
+Install, upgrade, and verify the `xiond` CLI for Verona chain work. See also `cli-rename-note.md` for the Verona branding vs `xiond` binary naming.
 
 ## When to use `xiond` vs `verona-toolkit`
 
@@ -121,7 +121,7 @@ xiond version
 
 **General**
 
-- Alternative installs (binaries, Docker, source): [Xion xiond installation docs](https://docs.burnt.com/xion/developers/getting-started-advanced/setup-local-environment/installation-prerequisites-setup-local-environment#xiond)
+- Alternative installs (binaries, Docker, source): [xiond installation docs](https://docs.burnt.com/xion/developers/getting-started-advanced/setup-local-environment/installation-prerequisites-setup-local-environment#xiond)
 - After install: `xiond --help`, `xiond keys add <keyname>`, `xiond init <moniker>`
 
 ## Next steps

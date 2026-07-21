@@ -13,7 +13,7 @@
       "type": "string",
       "required": true,
       "description": "Manager user ID to remove",
-      "notes": "This is a user ID, not a Xion address"
+      "notes": "This is a user ID, not a Verona chain address"
     }
   ],
   "validation_rules": [

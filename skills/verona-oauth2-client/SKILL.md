@@ -1,6 +1,6 @@
 ---
 name: verona-oauth2-client
-description: "OAuth2 client lifecycle on Verona/Xion via Manager API (create, list, update, delete, managers, transfer). Use when registering OAuth apps or managing OAuth2 clients. Requires verona-oauth2 (dev-mode for Manager scopes)."
+description: "OAuth2 client lifecycle on Verona via Manager API (create, list, update, delete, managers, transfer). Use when registering OAuth apps or managing OAuth2 clients. Requires verona-oauth2 (dev-mode for Manager scopes)."
 metadata:
   author: burnt-labs
   version: "1.1.0"
@@ -12,7 +12,7 @@ compatibility: Requires verona-toolkit CLI >=0.9.0 and OAuth2 authentication
 
 # verona-oauth2-client
 
-OAuth2 client management skill for Xion blockchain. Enables dApp registration and lifecycle management through the MGR API.
+OAuth2 client management skill for Verona. Enables dApp registration and lifecycle management through the MGR API.
 
 ## Triggers
 
@@ -20,10 +20,10 @@ OAuth2 client, OAuth client, client management, create OAuth app, register clien
 
 ## Overview
 
-OAuth2 clients are the bridge between dApps and Xion's MetaAccount system. Each client is bound to a Treasury and can have multiple managers for team collaboration.
+OAuth2 clients are the bridge between dApps and Verona's MetaAccount system. Each client is bound to a Treasury and can have multiple managers for team collaboration.
 
 **Key concepts:**
-- **Client** — OAuth2 application registered with Xion
+- **Client** — OAuth2 application registered with Verona
 - **Treasury binding** — Every client must be bound to an existing Treasury; **treasury on-chain params are SSOT** for redirect and branding (API 0.1.0)
 - **sync-from-treasury** — Refreshes mgr-api client view after treasury `redirect_url` / `icon_url` changes (and `display_url` read from chain at sync time)
 - **Managers** — Team members who can manage the client (but not delete it)
@@ -137,7 +137,7 @@ Transfer client ownership when team roles change:
 verona-toolkit oauth2 client transfer-ownership client_abc123 --new-owner user_789 --force
 ```
 
-> Only the current owner can transfer. The new owner must already have a Xion MetaAccount.
+> Only the current owner can transfer. The new owner must already have a Verona MetaAccount.
 > The `--force` flag is required to confirm the ownership transfer.
 
 ### Rotate Client Secret
@@ -464,7 +464,7 @@ You cannot change a client's treasury after creation. Ensure the treasury exists
 
 ## Related Skills
 
-- **verona-dev** — Unified entry point for Xion development
+- **verona-dev** — Unified entry point for Verona development
 - **verona-oauth2** — Authentication (use before this skill)
 - **verona-treasury** — Treasury management (required for client creation)
 - **verona-toolkit-init** — CLI installation (use if CLI not found)

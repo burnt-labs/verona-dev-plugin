@@ -2,11 +2,18 @@
   "name": "verona-dev-plugin",
   "displayName": "Verona Dev Plugin",
   "version": "0.1.0",
-  "description": "Agent skills for Verona and Xion development from Burnt Labs.",
+  "description": "Agent skills for Verona development from Burnt Labs.",
   "author": {
     "name": "Burnt Labs"
   },
   "license": "Apache-2.0",
+  "keywords": [
+    "verona",
+    "burnt",
+    "skills",
+    "metaaccount"
+  ],
+  "logo": "assets/logo.svg",
   "skills": "./skills/",
   "hooks": "./hooks/hooks-cursor.json"
 }

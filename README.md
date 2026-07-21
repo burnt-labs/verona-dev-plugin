@@ -1,55 +1,30 @@
 # Verona Dev Plugin
 
-Multi-host agent skills plugin for [Verona](https://docs.burnt.com/xion/verona) and Xion development from Burnt Labs.
+Build [Verona](https://verona.dev/) apps with Burnt Labs skills inside your coding agent.
 
-Install once per coding agent host (Cursor, Codex, Claude Code, Kimi) using each host's official plugin or path install flow — **no custom install CLI**.
+This plugin gives your agent a shared set of Verona skills — MetaAccount auth, toolkit flows, and `xiond` / CosmWasm helpers — so you spend less time re-explaining the stack every session.
 
-## What you get
+It works with **Cursor**, **Codex**, **Claude Code**, and **Kimi**. Install once through your host’s normal plugin or path install flow. There is no separate installer CLI.
 
-| Component | Location | Status |
-|-----------|----------|--------|
-| Host manifests | `.cursor-plugin/`, `.codex-plugin/`, `.claude-plugin/`, `.kimi-plugin/` | Available |
-| Shared skills | `skills/` | Available (vdp-002 corpus) |
-| Session entry | `verona-dev` skill + `hooks/` | Auto on Cursor, Kimi, Claude; manual on Codex |
+## What it does
 
-Each host discovers skills from the shared `skills/` tree per its manifest conventions.
+After install, a new session can pick up Verona context automatically (on Codex, trust the plugin’s hooks first). From there the agent can route MetaAccount work, toolkit tasks, and chain / `xiond` operations through the skills shipped in this repo.
 
-## Quick start
+Frontend or full-stack starter kits (React, Next, Vue, and similar) are planned for a later release.
 
-1. Clone this repository (or install from a published path — see [INSTALL.md](INSTALL.md)).
-2. Follow the install section for your host in [INSTALL.md](INSTALL.md).
-3. Reload or restart the host after install.
-4. Start Verona work — **`verona-dev`** loads automatically on Cursor, Kimi, and Claude Code; on Codex, invoke **`verona-dev`** manually at session start.
+## Get started
 
-## Supported hosts
-
-- **Cursor** — local plugin path or marketplace
-- **Codex** — plugin marketplace or local path
-- **Claude Code** — plugin marketplace or local path
-- **Kimi** — `/plugins install` or path install
-
-Per-host steps: [INSTALL.md](INSTALL.md).
-
-## Repository layout
-
-```
-verona-dev-plugin/
-├── .cursor-plugin/plugin.json
-├── .codex-plugin/plugin.json
-├── .claude-plugin/plugin.json
-├── .kimi-plugin/plugin.json
-├── skills/                 # Shared skill corpus
-├── hooks/                  # Session hooks (Cursor, Claude)
-├── README.md
-├── INSTALL.md
-├── AGENTS.md
-└── LICENSE
-```
-
-## Roadmap
-
-- **Frontend / stack selection** (React, Next, Vue, dApp wiring) — planned for a future plugin release; `verona-dev` routes those requests to a stub until then.
+1. Clone this repository (or install from a published URL if your host supports it).
+2. Follow the steps for your host in [INSTALL.md](INSTALL.md).
+3. Reload or restart the agent after install.
+4. Start a Verona task — entry guidance loads with the session when hooks are active.
 
 ## License
 
 Licensed under the [Apache License 2.0](LICENSE).
+
+---
+
+## If you are an agent
+
+Do **not** invent install steps from this README. Read and follow **[INSTALL.md](INSTALL.md)** for host-specific install, session entry, and hook trust.
