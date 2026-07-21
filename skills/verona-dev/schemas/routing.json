@@ -17,37 +17,86 @@
     }
   ],
   "routing_rules": {
+    "app-sdk-stack": {
+      "intent_lane": "app-sdk",
+      "keywords": ["stack selection", "which sdk", "integration path", "framework choice", "frontend setup"],
+      "skill": "verona-dev",
+      "reference": "references/integration-paths.md",
+      "priority": 1
+    },
+    "app-sdk-web": {
+      "intent_lane": "app-sdk",
+      "keywords": ["react", "next.js", "nextjs", "vue", "svelte", "dapp", "frontend", "abstraxion", "xion.js", "web app", "metaaccount ui"],
+      "skill": "verona-dev",
+      "reference": "references/xion-js-web.md",
+      "priority": 1
+    },
+    "app-sdk-rn": {
+      "intent_lane": "app-sdk",
+      "keywords": ["react native", "expo", "mobile app", "abstraxion-react-native"],
+      "skill": "verona-dev",
+      "reference": "references/xion-js-web.md",
+      "priority": 1
+    },
+    "app-sdk-mob": {
+      "intent_lane": "app-sdk",
+      "keywords": ["mob", "mob-expo", "swift", "kotlin", "uniffi", "native signing"],
+      "skill": "verona-dev",
+      "reference": "references/mob.md",
+      "priority": 1
+    },
+    "app-sdk-oauth-rest": {
+      "intent_lane": "app-sdk",
+      "keywords": ["oauth api", "oauth rest", "pkce", "headless oauth", "http transaction", "api/v1", "no sdk"],
+      "skill": "verona-dev",
+      "reference": "references/oauth2-api-service.md",
+      "priority": 1
+    },
+    "app-sdk-networks": {
+      "intent_lane": "app-sdk",
+      "keywords": ["chain id", "testnet-2", "mainnet-1", "rpc endpoint", "oauth host"],
+      "skill": "verona-dev",
+      "reference": "references/networks.md",
+      "priority": 1
+    },
     "login": {
+      "intent_lane": "cli",
       "keywords": ["login", "auth", "OAuth2", "authenticate", "sign in", "登录", "认证", "MetaAccount 登录"],
       "skill": "verona-oauth2",
       "priority": 1
     },
     "treasury": {
+      "intent_lane": "cli",
       "keywords": ["treasury", "Treasury", "资金管理", "treasury 管理", "fund", "withdraw", "grant"],
       "skill": "verona-treasury",
       "priority": 1
     },
     "nft": {
+      "intent_lane": "cli",
       "keywords": ["NFT", "nft", "collection", "mint", "royalties", "CW721", "CW2981", "NFT 铸造"],
       "skill": "verona-asset",
       "priority": 1
     },
     "faucet": {
+      "intent_lane": "cli",
       "keywords": ["faucet", "testnet tokens", "test token", "get xion", "领取代币", "测试币", "水龙头"],
       "skill": "verona-faucet",
       "priority": 1
     },
     "toolkit-init": {
+      "intent_lane": "cli",
       "keywords": ["install", "setup", "xion toolkit", "verona-toolkit", "install xion", "xion 开发入门"],
       "skill": "verona-toolkit-init",
       "priority": 1
     },
     "verona-bin-chain": {
+      "intent_lane": "cli",
       "keywords": ["xiond", "chain query", "rpc", "block", "transaction status", "balance query", "链上查询"],
       "skill": "verona-bin",
       "priority": 2
     },
     "verona-bin-wasm": {
+      "intent_lane": "cli",
       "keywords": ["deploy contract", "cosmwasm", "wasm", "instantiate", "migrate contract", "合约部署"],
       "skill": "verona-bin",
       "priority": 2
