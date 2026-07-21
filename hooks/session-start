@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # SessionStart hook for verona-dev-plugin
 # - Cursor: CURSOR_PLUGIN_ROOT → additional_context
-# - Claude Code / Codex: CLAUDE_PLUGIN_ROOT (Codex also sets PLUGIN_ROOT) →
+# - Claude Code / Codex: CLAUDE_PLUGIN_ROOT and/or PLUGIN_ROOT →
 #   hookSpecificOutput.SessionStart.additionalContext
+#   (hooks.json resolves CLAUDE_PLUGIN_ROOT with PLUGIN_ROOT fallback)
 # Codex docs: https://learn.chatgpt.com/docs/build-plugins (plugin hooks) +
 # https://developers.openai.com/codex/hooks (SessionStart output schema)
 
@@ -44,7 +45,10 @@ import json, os, sys
 context = sys.stdin.read()
 if os.environ.get("CURSOR_PLUGIN_ROOT"):
     payload = {"additional_context": context}
-elif os.environ.get("CLAUDE_PLUGIN_ROOT") and not os.environ.get("COPILOT_CLI"):
+elif (
+    (os.environ.get("CLAUDE_PLUGIN_ROOT") or os.environ.get("PLUGIN_ROOT"))
+    and not os.environ.get("COPILOT_CLI")
+):
     payload = {
         "hookSpecificOutput": {
             "hookEventName": "SessionStart",
@@ -64,7 +68,7 @@ print(json.dumps(payload, indent=2, ensure_ascii=False))
 
   if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
     printf '{\n  "additional_context": "%s"\n}\n' "$session_context_escaped"
-  elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+  elif { [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] || [ -n "${PLUGIN_ROOT:-}" ]; } && [ -z "${COPILOT_CLI:-}" ]; then
     printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$session_context_escaped"
   else
     printf '{\n  "additionalContext": "%s"\n}\n' "$session_context_escaped"
