@@ -1,10 +1,35 @@
 {
   "skill_name": "verona-dev",
   "evals": [
-    {"id": 1, "prompt": "I want to create a treasury for my Verona dApp", "expected_output": "Route to verona-treasury skill"},
+    {"id": 1, "prompt": "Fund and configure a treasury using the Verona toolkit CLI", "expected_output": "Route to verona-treasury skill"},
     {"id": 2, "prompt": "我的 Verona 应用需要管理 Treasury", "expected_output": "Route to verona-treasury skill (Chinese)"},
     {"id": 3, "prompt": "How do I login to Verona?", "expected_output": "Route to verona-oauth2 skill"},
     {"id": 4, "prompt": "Deploy a CosmWasm contract on Verona", "expected_output": "Route to verona-bin skill"},
-    {"id": 5, "prompt": "I need testnet tokens", "expected_output": "Route to verona-faucet skill"}
+    {"id": 5, "prompt": "I need testnet tokens", "expected_output": "Route to verona-faucet skill"},
+    {
+      "id": "preferred",
+      "prompt": "Help me build a React dApp with Abstraxion on XION testnet",
+      "expected_output": "Read references/xion-js-web.md (and references/networks.md if needed)"
+    },
+    {
+      "id": "alternate-mob",
+      "prompt": "I need Swift native signing for XION transactions",
+      "expected_output": "Read references/mob.md"
+    },
+    {
+      "id": "alternate-oauth",
+      "prompt": "Submit blockchain txs via OAuth REST without embedding an SDK",
+      "expected_output": "Read references/oauth2-api-service.md"
+    },
+    {
+      "id": "negative-cli-login",
+      "prompt": "How do I login to Verona using the toolkit CLI?",
+      "expected_output": "Route to verona-oauth2 — not references"
+    },
+    {
+      "id": "negative-cli-treasury",
+      "prompt": "Fund my treasury from the command line",
+      "expected_output": "Route to verona-treasury — not references"
+    }
   ]
 }
