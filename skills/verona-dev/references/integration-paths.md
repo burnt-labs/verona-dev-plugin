@@ -14,7 +14,7 @@ What are you building?
 │   └─ Vue, Svelte, vanilla, other ────► @burnt-labs/abstraxion-js       [DR-2]
 │
 ├─ React Native / Expo
-│   ├─ Full MetaAccount UX (auth modes, dashboard) ► abstraxion-react-native [DR-3]
+│   ├─ Full MetaAccount UX (auth modes, dashboard) ► @burnt-labs/abstraxion-react-native [DR-3]
 │   └─ Native Rust signing, lighter JS, no dashboard ► @burnt-labs/mob-expo [DR-4]
 │
 ├─ Mobile native (Swift / Kotlin)
