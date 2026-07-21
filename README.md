@@ -8,9 +8,37 @@ It works with **Cursor**, **Codex**, **Claude Code**, and **Kimi**. Install once
 
 ## What it does
 
-After install, a new session can pick up Verona context automatically (on Codex, trust the plugin’s hooks first). From there the agent can route MetaAccount work, toolkit tasks, and chain / `xiond` operations through the skills shipped in this repo.
+After install, a new session can pick up Verona context automatically (on Codex, trust the plugin’s hooks first). The entry skill is **`verona-dev`**, which routes work into two clear buckets: **application development** (SDK guides + chain CLI) and **toolkit operations** (MetaAccount CLI flows).
 
-Frontend or full-stack starter kits (React, Next, Vue, and similar) are planned for a later release.
+## Skills routing
+
+All skills live under [`skills/`](skills/). Session entry: [`skills/verona-dev/SKILL.md`](skills/verona-dev/SKILL.md).
+
+### 1. Development
+
+Use when building or integrating apps (web, mobile, native, headless OAuth), or when you need chain / CosmWasm / `xiond` help.
+
+| Skill | Role |
+|-------|------|
+| **`verona-dev`** | Entry router + **application guides** under [`skills/verona-dev/references/`](skills/verona-dev/references/) (prefer **xion.js** / Abstraxion; alternates **mob**, **oauth2-api-service**) |
+| **`verona-bin`** | `xiond` install, chain queries/txs, CosmWasm — use when the task needs the binary, not the app SDK |
+
+Start at [`skills/verona-dev/references/README.md`](skills/verona-dev/references/README.md) for stack selection; hand off to `verona-bin` only for `xiond` / wasm / mnemonic-wallet work.
+
+### 2. Toolkit
+
+Use when operating MetaAccount flows through the **verona-toolkit** CLI (install, login, treasury, OAuth clients, assets, faucet).
+
+| Skill | Role |
+|-------|------|
+| **`verona-toolkit-init`** | Install / set up the toolkit CLI |
+| **`verona-oauth2`** | Login / MetaAccount auth (CLI) |
+| **`verona-oauth2-client`** | OAuth app / client CRUD (CLI) |
+| **`verona-treasury`** | Treasury create / fund / grants (CLI) |
+| **`verona-asset`** | NFT / asset operations (CLI) |
+| **`verona-faucet`** | Testnet tokens |
+
+Do not mix lanes: app SDK setup stays in `verona-dev` references; toolkit command workflows stay in the toolkit skills above.
 
 ## Get started
 
@@ -28,3 +56,5 @@ Licensed under the [Apache License 2.0](LICENSE).
 ## If you are an agent
 
 Do **not** invent install steps from this README. Read and follow **[INSTALL.md](INSTALL.md)** for host-specific install, session entry, and hook trust.
+
+For task routing: load **`verona-dev`** first, then follow **Development** (`references/` or `verona-bin`) vs **Toolkit** (leaf skills) as above.
