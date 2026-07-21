@@ -1,241 +1,97 @@
 ---
 name: verona-dev
 description: |
-  The primary entry point for ALL Verona/Xion blockchain development. Use this skill whenever the user mentions Verona toolkit, Verona Agent Toolkit, Xion/Verona development, MetaAccount, gasless transactions, Treasury contracts, OAuth2 authentication, or any Verona/Xion-related operations.
-  
-  This skill helps route users to the correct tool based on their needs:
-  - MetaAccount/gasless operations → verona-toolkit skills (this repo)
-  - Chain queries/contract deployment → verona-bin skill (this plugin)
-  
-  Triggers on: verona, verona toolkit, verona agent toolkit, xion, xion blockchain, xion 开发, MetaAccount, gasless, 无 gas, Treasury, OAuth2 xion, xion 认证, xion login, xion toolkit, burnt labs, building on xion, xion 开发入门, gasless 交易, 无 gas 交易, treasury 管理, build on xion, xion app, xion dapp, xion development, xion blockchain development, MetaAccount 登录, gasless auth, session key.
-  
-  Make sure to use this skill for ANY Xion-related question, even if the user doesn't explicitly ask for "verona-dev" or "toolkit".
+  Default entry router for ALL Verona and Xion development in this plugin. Use this skill whenever the user mentions Verona, Xion, MetaAccount, gasless auth, Treasury, OAuth2, xiond, CosmWasm, testnet faucet, NFT minting, or building on Burnt Labs — even if they do not say "verona-dev" or "toolkit".
+
+  Routes MetaAccount and toolkit work to in-plugin skills; routes chain queries, txs, xiond install, and CosmWasm to verona-bin. Do not treat external xion-skills repos as the primary install path.
+
+  Triggers on: verona, xion, MetaAccount, gasless, 无 gas, Treasury, OAuth2, xiond, wasm, CosmWasm, faucet, testnet tokens, NFT, mint, burnt labs, build on xion, xion dapp, xion 开发, session key, verona agent toolkit.
 metadata:
   author: burnt-labs
-  version: "1.1.0"
+  version: "2.0.0"
   requires:
     - verona-toolkit-init
-  compatibility: Entry point for all Xion development - routes to appropriate skill
   recommends:
     - verona-toolkit-init
     - verona-oauth2
     - verona-oauth2-client
     - verona-treasury
     - verona-asset
+    - verona-faucet
     - verona-bin
+  compatibility: Entry router for Verona development in verona-dev-plugin
 ---
 
 # verona-dev
 
-Unified entry point for Xion blockchain development. This skill helps you choose the right tool for the job.
+Session entry for Verona / Xion work in **verona-dev-plugin**. Read this skill first, then load the routed skill below.
 
-## Core Philosophy
+## Philosophy
 
-**Xion developers should primarily use MetaAccount for a gasless experience.**
+**MetaAccount-first.** Most app developers (~90%) use the Verona Agent Toolkit for gasless auth, treasury, assets, and faucet flows. Reserve **xiond** (`verona-bin`) for advanced chain queries, transaction submission, wallet mnemonics, and CosmWasm lifecycle.
 
-- Most developers (90%) use MetaAccount + OAuth2 for gasless transactions
-- Traditional xiond CLI is reserved for advanced scenarios (contract deployment, chain queries)
+## Routing table
 
-## Parameter Collection Workflow
+| User intent | Route to | Examples |
+|-------------|----------|----------|
+| Toolkit install / env setup | `verona-toolkit-init` | "install verona toolkit", "setup dev environment" |
+| Login / OAuth / MetaAccount auth | `verona-oauth2` | "login", "gasless auth", "MetaAccount" |
+| OAuth app / client CRUD | `verona-oauth2-client` | "register oauth app", "client manager" |
+| Treasury create / fund / withdraw | `verona-treasury` | "treasury", "fee grant", "authz grant" |
+| NFT / asset operations | `verona-asset` | "mint NFT", "collection" |
+| Testnet tokens | `verona-faucet` | "faucet", "testnet tokens" |
+| `xiond` queries, txs, wallet keys | `verona-bin` → `references/usage.md` | "query balance", "send tx", "xiond" |
+| `xiond` install / upgrade | `verona-bin` → `references/init.md` | "install xiond", "upgrade xiond" |
+| CosmWasm deploy / interact | `verona-bin` → `references/wasm.md` | "deploy contract", "wasm" |
+| Frontend / stack choice | Deferred (see below) | "React vs Next", "frontend setup" |
 
-When routing a user request to an appropriate skill:
+## Workflow
 
-### Step 1: Detect Intent
-Parse the user's message to identify keywords and intent:
-- Login/auth → `verona-oauth2`
-- OAuth2 client management → `verona-oauth2-client`
-- Treasury management → `verona-treasury`
-- NFT operations → `verona-asset`
-- Testnet tokens → `verona-faucet`
-- Tool installation → `verona-toolkit-init`
-- Chain queries (xiond) → `verona-bin` (`references/usage.md`)
-- Contract deployment → `verona-bin` (`references/wasm.md`)
+1. **Detect intent** — match the user message to the routing table.
+2. **Confirm** — tell the user which skill you are loading and why.
+3. **Hand off** — Read that skill's `SKILL.md` and follow it; do not re-implement its commands here.
 
-### Step 2: Confirm Routing
-Inform the user which skill you're routing to and why:
-```
-Routing to: verona-treasury skill
-Reason: User wants to create and manage a Treasury
-```
+## Decision matrix
 
-### Step 3: Hand Off
-Load the target skill and let it handle parameter collection.
+| User needs | Skill | Tool |
+|------------|-------|------|
+| Login / authentication | `verona-oauth2` | verona-toolkit |
+| OAuth client registration / CRUD | `verona-oauth2-client` | verona-toolkit |
+| Treasury create, fund, withdraw, grants | `verona-treasury` | verona-toolkit |
+| NFT collection / mint / royalties | `verona-asset` | verona-toolkit |
+| Testnet tokens / faucet | `verona-faucet` | verona-toolkit |
+| Install or upgrade xiond | `verona-bin` → `init.md` | xiond |
+| Chain queries, txs, mnemonic wallet | `verona-bin` → `usage.md` | xiond |
+| CosmWasm store / instantiate / migrate | `verona-bin` → `wasm.md` | xiond |
 
-## Decision Matrix
+## Frontend and stack selection (next iteration)
 
-When a user mentions Xion-related needs, use this matrix to recommend the correct tool:
+Frontend framework choice (React, Next, Vue, Svelte, etc.), dApp wiring norms, and stack-selection playbooks are **planned for a future plugin release**. A project stub for frontend and stack selection is reserved for the next iteration — do not invent full frontend guides here. For now, route toolkit auth/treasury/asset skills and defer stack-specific setup.
 
-| User Needs | Recommended Skill | Tool | Why |
-|------------|-------------------|------|-----|
-| **Login / Authentication** | `verona-oauth2` | verona-toolkit | MetaAccount, gasless |
-| **Register OAuth App** | `verona-oauth2-client` | verona-toolkit | OAuth2 client registration |
-| **Manage OAuth Clients** | `verona-oauth2-client` | verona-toolkit | Client lifecycle CRUD |
-| **Add Client Manager** | `verona-oauth2-client` | verona-toolkit | Client permission management |
-| **Transfer Client Ownership** | `verona-oauth2-client` | verona-toolkit | Client ownership transfer |
-| **Create Treasury** | `verona-treasury` | verona-toolkit | Core functionality |
-| **Query Treasury** | `verona-treasury` | verona-toolkit | Direct API access |
-| **Fund / Withdraw** | `verona-treasury` | verona-toolkit | Gasless transactions |
-| **Authz Grant Config** | `verona-treasury` | verona-toolkit | Specialized feature |
-| **Fee Grant Config** | `verona-treasury` | verona-toolkit | Specialized feature |
-| **Create NFT Collection** | `verona-asset` | verona-toolkit | Gasless NFT creation |
-| **Mint NFT Token** | `verona-asset` | verona-toolkit | Gasless minting |
-| **Mint with Royalties** | `verona-asset` | verona-toolkit | CW2981 support |
-| **Predict NFT Address** | `verona-asset` | verona-toolkit | Pre-deployment prediction |
-| **Batch Mint NFTs** | `verona-asset` | verona-toolkit | Multiple tokens at once |
-| **Query chain data** | `verona-bin` | xiond | More powerful queries |
-| **Query tx status** | `verona-bin` | xiond | Direct RPC access |
-| **Query block info** | `verona-bin` | xiond | Chain-level queries |
-| **Deploy CosmWasm** | `verona-bin` | xiond | Contract developer tool |
-| **Migrate contract** | `verona-bin` | xiond | Advanced contract ops |
-| **Recover wallet (mnemonic)** | `verona-bin` | xiond | Mnemonic management |
+## Networks
 
-## Quick Start
+| Network | OAuth2 API | Chain ID |
+|---------|------------|----------|
+| testnet | oauth2.testnet.burnt.com | xion-testnet-2 |
+| mainnet | oauth2.burnt.com | xion-mainnet-1 |
 
-### For Most Developers (MetaAccount Path)
+## Parameter validation
+
+`scripts/validate-params.sh` validates JSON against sibling skill schemas under the install root:
 
 ```bash
-# 1. Install verona-toolkit CLI
-# Use: verona-toolkit-init skill
-
-# 2. Authenticate with MetaAccount
-verona-toolkit auth login
-# Or use: verona-oauth2 skill
-
-# 3. Manage Treasuries
-verona-toolkit treasury list
-verona-toolkit treasury create --name "My Treasury"
-verona-toolkit treasury fund <address> --amount 1000000uxion
-# Or use: verona-treasury skill
-
-# 4. Create NFT Collection (optional)
-verona-toolkit asset types
-verona-toolkit asset create --type cw721-base --name "My NFT" --symbol "NFT"
-verona-toolkit asset mint --contract <address> --token-id "1" --owner xion1...
-# Or use: verona-asset skill
+skills/verona-dev/scripts/validate-params.sh verona-treasury grant-config-add '{"address": "xion1...", "preset": "send"}'
 ```
 
-### For Contract Developers (xiond Path)
+## Install / update skills
 
 ```bash
-# 1. Install xiond CLI
-# Use: verona-bin skill → references/init.md
-
-# 2. Create/import wallet
-xiond keys add my-wallet
-# Or use: verona-bin → references/usage.md
-
-# 3. Deploy contracts
-xiond tx wasm store contract.wasm --from my-wallet
-# Or use: verona-bin → references/wasm.md
-```
-
-## Tool Comparison
-
-| Feature | verona-toolkit (MetaAccount) | xiond (Traditional) |
-|---------|---------------------------|---------------------|
-| **Authentication** | OAuth2 + Browser | Mnemonic / Keyring |
-| **Gas** | Gasless (Fee Grant) | User pays gas |
-| **Treasury** | Full support | Limited |
-| **Contract Deploy** | Execute only | Full lifecycle |
-| **Chain Queries** | Basic | Advanced |
-| **Target User** | App developers | Contract devs / Validators |
-
-## When to Recommend verona-bin
-
-Use the **`verona-bin`** skill (same plugin) when users need:
-
-1. **Chain Queries** - Block info, transaction status, balance queries for any address
-2. **Contract Deployment** - Upload, instantiate, migrate CosmWasm contracts
-3. **Mnemonic Wallets** - Traditional key management with seed phrases
-4. **Validator Operations** - Advanced node and validator management
-
-## Related Skills
-
-### In This Repository (verona-agent-toolkit)
-
-| Skill | Purpose |
-|-------|---------|
-| `verona-toolkit-init` | Install verona-toolkit CLI |
-| `verona-oauth2` | MetaAccount authentication |
-| `verona-oauth2-client` | OAuth2 client lifecycle management |
-| `verona-treasury` | Treasury lifecycle management |
-| `verona-asset` | NFT collection creation and minting |
-| `verona-bin` | xiond install, chain queries, CosmWasm |
-
-### verona-bin references
-
-| Reference | Purpose |
-|-----------|---------|
-| `references/init.md` | Install xiond CLI |
-| `references/usage.md` | Chain queries, wallet management |
-| `references/wasm.md` | CosmWasm contract operations |
-
-## Installation
-
-```bash
-# Install all Verona Dev Plugin skills (global: Cursor, Claude Code, Codex, OpenClaw)
 npx skills add burnt-labs/verona-dev-plugin -g -y -a cursor -a claude-code -a codex -a openclaw
 ```
 
-## Network Configuration
-
-| Network | OAuth2 API | RPC | Chain ID |
-|---------|------------|-----|----------|
-| testnet | oauth2.testnet.burnt.com | rpc.xion-testnet-2.burnt.com:443 | xion-testnet-2 |
-| mainnet | oauth2.burnt.com | rpc.xion-mainnet-1.burnt.com:443 | xion-mainnet-1 |
-
-## Troubleshooting
-
-### User asks about "gas" or "fees"
-→ Recommend verona-toolkit (MetaAccount) for gasless transactions
-
-### User mentions "mnemonic" or "seed phrase"
-→ Recommend `verona-bin` (`references/usage.md`)
-
-### User wants to "deploy a contract"
-→ Recommend `verona-bin` (`references/wasm.md`)
-
-### User wants to "query transaction"
-→ Recommend `verona-bin` (`references/usage.md`)
-
-### User wants to "create NFT" or "mint NFT"
-→ Recommend verona-asset for gasless NFT operations
-
-### User mentions "royalties" or "CW2981"
-→ Recommend verona-asset with cw2981-royalties type
-
-## Shared parameter validation
-
-`scripts/validate-params.sh` validates JSON parameters for any Xion skill against its `schemas/<command>.json`. It resolves schemas from **sibling** skill directories under the same install root (for example `~/.agents/skills/`).
-
-```bash
-# From repository root
-skills/verona-dev/scripts/validate-params.sh verona-treasury grant-config-add '{"address": "xion1abc...", "preset": "send"}'
-
-# When skills are installed globally (cwd = skills install root)
-verona-dev/scripts/validate-params.sh verona-oauth2 login '{}'
-```
-
-Other skills document this helper in their parameter-validation examples; install **`verona-dev`** whenever you use those examples.
-
-## Keeping Skills Updated
-
-Skills are actively developed and improved. If you encounter:
-- Unknown commands or flags
-- Outdated behavior
-- Missing features mentioned in documentation
-
-Re-install the skills to get the latest version:
-
-```bash
-# Update Verona Dev Plugin skills (includes verona-bin)
-npx skills add burnt-labs/verona-dev-plugin -g -y -a cursor -a claude-code -a codex -a openclaw
-```
-
-Check the repository releases for changelog: https://github.com/burnt-labs/verona-dev-plugin/releases
+Changelog: https://github.com/burnt-labs/verona-dev-plugin/releases
 
 ## Resources
 
 - [Xion Documentation](https://docs.burnt.com/xion)
 - [verona-dev-plugin](https://github.com/burnt-labs/verona-dev-plugin)
-- [Agent Skills Format](https://agentskills.io/)

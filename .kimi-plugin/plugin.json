@@ -6,5 +6,8 @@
     "name": "Burnt Labs"
   },
   "license": "Apache-2.0",
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "sessionStart": {
+    "skill": "verona-dev"
+  }
 }
