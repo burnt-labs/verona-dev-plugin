@@ -35,7 +35,7 @@ Use `xiond` for traditional Cosmos SDK wallet operations and read-only chain que
 
 **Testnet extras**
 
-- Faucet: https://faucet.xion.burnt.com/
+- Faucet: https://dev.testnet.burnt.com/faucet
 - Explorer: https://explorer.burnt.com/xion-testnet
 - REST API: `https://api.xion-testnet-2.burnt.com`
 
@@ -52,7 +52,7 @@ export NODE=https://rpc.xion-testnet-2.burnt.com:443
 export CHAIN_ID=xion-testnet-2
 ```
 
-Public endpoints: [Verona public endpoints](https://docs.burnt.com/xion/developers/section-overview/public-endpoints-and-resources)
+Public endpoints: [Verona public endpoints](https://docs.verona.dev/en/build-on-verona/references/public-endpoints-and-resources)
 
 ## Account management
 
@@ -140,7 +140,7 @@ Flags: `--gas auto`, `--gas-adjustment 1.3`, or `--gas 200000` for a fixed limit
 
 ## Testnet funding
 
-1. Web faucet: https://faucet.xion.burnt.com/
+1. Web faucet: https://dev.testnet.burnt.com/faucet
 2. Discord faucet bot (Verona Discord)
 
 Mainnet: acquire XION through supported exchanges.
@@ -173,7 +173,7 @@ xiond init <moniker> --chain-id <chain-id>
 xiond start
 ```
 
-Full daemon setup: [Interact with the chain](https://docs.burnt.com/xion/developers/getting-started-advanced/setup-local-environment/interact-with-xion-chain-setup-xion-daemon)
+Full daemon setup: [Daemon CLI](https://docs.verona.dev/en/build-on-verona/tools/daemon-cli)
 
 ## Related
 

@@ -121,7 +121,7 @@ xiond version
 
 **General**
 
-- Alternative installs (binaries, Docker, source): [xiond installation docs](https://docs.burnt.com/xion/developers/getting-started-advanced/setup-local-environment/installation-prerequisites-setup-local-environment#xiond)
+- Alternative installs (binaries, Docker, source): [xiond installation docs](https://docs.verona.dev/en/build-on-verona/computation/local-development/setting-up-env/installation-prerequisites-setup-local-environment)
 - After install: `xiond --help`, `xiond keys add <keyname>`, `xiond init <moniker>`
 
 ## Next steps

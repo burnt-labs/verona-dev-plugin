@@ -91,5 +91,5 @@ Changelog: https://github.com/burnt-labs/verona-dev-plugin/releases
 
 ## Resources
 
-- [Verona Documentation](https://verona.dev/)
+- [Verona Documentation](https://docs.verona.dev/en)
 - [verona-dev-plugin](https://github.com/burnt-labs/verona-dev-plugin)

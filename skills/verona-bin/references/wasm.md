@@ -176,7 +176,7 @@ Address and state are preserved; logic comes from the new code.
 
 Counter reference: https://github.com/burnt-labs/cw-counter
 
-Official guide: [Deploy a CosmWasm smart contract](https://docs.burnt.com/xion/developers/getting-started-advanced/your-first-contract/deploy-a-cosmwasm-smart-contract)
+Official guide: [Deploy a CosmWasm smart contract](https://docs.verona.dev/en/build-on-verona/computation/local-development/deploy-a-cosmwasm-smart-contract)
 
 CosmWasm docs: https://docs.cosmwasm.com/
 
