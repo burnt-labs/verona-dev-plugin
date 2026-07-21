@@ -468,7 +468,7 @@ You cannot change a client's treasury after creation. Ensure the treasury exists
 - **verona-oauth2** — Authentication (use before this skill)
 - **verona-treasury** — Treasury management (required for client creation)
 - **verona-toolkit-init** — CLI installation (use if CLI not found)
-- **xiond-usage** (xion-skills) — Chain-level queries
+- **verona-bin** — Chain-level queries and CosmWasm (`xiond` CLI)
 
 ## Version
 

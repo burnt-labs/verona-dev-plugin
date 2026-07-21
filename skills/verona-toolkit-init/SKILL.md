@@ -7,7 +7,7 @@ metadata:
   provides:
     - Installation guidance for verona-toolkit CLI
   recommends:
-    - burnt-labs/xion-skills
+    - verona-bin
   compatibility: macOS (x64/ARM64), Linux (x64/ARM64), Windows (PowerShell)
 ---
 
@@ -113,11 +113,11 @@ verona-dev (entry point - routes to correct skill)
     │       │
     │       └── verona-faucet (testnet tokens)
     │
-    └── recommends: burnt-labs/xion-skills
+    └── recommends: verona-bin
             │
-            ├── xiond-init (xiond installation)
-            ├── xiond-usage (chain queries)
-            └── xiond-wasm (contract deployment)
+            ├── references/init.md (xiond installation)
+            ├── references/usage.md (chain queries)
+            └── references/wasm.md (contract deployment)
 ```
 
 ## Resources

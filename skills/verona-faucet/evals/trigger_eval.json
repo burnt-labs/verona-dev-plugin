@@ -147,6 +147,6 @@
   {
     "query": "Deploy a CosmWasm contract",
     "should_trigger": false,
-    "reason": "Contract deployment, should use xiond-wasm skill"
+    "reason": "Contract deployment, should use verona-bin skill"
   }
 ]

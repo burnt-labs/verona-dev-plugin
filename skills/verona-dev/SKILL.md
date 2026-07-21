@@ -5,7 +5,7 @@ description: |
   
   This skill helps route users to the correct tool based on their needs:
   - MetaAccount/gasless operations → verona-toolkit skills (this repo)
-  - Chain queries/contract deployment → xiond skills (xion-skills repo)
+  - Chain queries/contract deployment → verona-bin skill (this plugin)
   
   Triggers on: verona, verona toolkit, verona agent toolkit, xion, xion blockchain, xion 开发, MetaAccount, gasless, 无 gas, Treasury, OAuth2 xion, xion 认证, xion login, xion toolkit, burnt labs, building on xion, xion 开发入门, gasless 交易, 无 gas 交易, treasury 管理, build on xion, xion app, xion dapp, xion development, xion blockchain development, MetaAccount 登录, gasless auth, session key.
   
@@ -22,7 +22,7 @@ metadata:
     - verona-oauth2-client
     - verona-treasury
     - verona-asset
-    - burnt-labs/xion-skills
+    - verona-bin
 ---
 
 # verona-dev
@@ -48,8 +48,8 @@ Parse the user's message to identify keywords and intent:
 - NFT operations → `verona-asset`
 - Testnet tokens → `verona-faucet`
 - Tool installation → `verona-toolkit-init`
-- Chain queries (xiond) → `xiond-usage` (xion-skills)
-- Contract deployment → `xiond-wasm` (xion-skills)
+- Chain queries (xiond) → `verona-bin` (`references/usage.md`)
+- Contract deployment → `verona-bin` (`references/wasm.md`)
 
 ### Step 2: Confirm Routing
 Inform the user which skill you're routing to and why:
@@ -82,12 +82,12 @@ When a user mentions Xion-related needs, use this matrix to recommend the correc
 | **Mint with Royalties** | `verona-asset` | verona-toolkit | CW2981 support |
 | **Predict NFT Address** | `verona-asset` | verona-toolkit | Pre-deployment prediction |
 | **Batch Mint NFTs** | `verona-asset` | verona-toolkit | Multiple tokens at once |
-| **Query chain data** | `xiond-usage` | xiond | More powerful queries |
-| **Query tx status** | `xiond-usage` | xiond | Direct RPC access |
-| **Query block info** | `xiond-usage` | xiond | Chain-level queries |
-| **Deploy CosmWasm** | `xiond-wasm` | xiond | Contract developer tool |
-| **Migrate contract** | `xiond-wasm` | xiond | Advanced contract ops |
-| **Recover wallet (mnemonic)** | `xiond-usage` | xiond | Mnemonic management |
+| **Query chain data** | `verona-bin` | xiond | More powerful queries |
+| **Query tx status** | `verona-bin` | xiond | Direct RPC access |
+| **Query block info** | `verona-bin` | xiond | Chain-level queries |
+| **Deploy CosmWasm** | `verona-bin` | xiond | Contract developer tool |
+| **Migrate contract** | `verona-bin` | xiond | Advanced contract ops |
+| **Recover wallet (mnemonic)** | `verona-bin` | xiond | Mnemonic management |
 
 ## Quick Start
 
@@ -118,15 +118,15 @@ verona-toolkit asset mint --contract <address> --token-id "1" --owner xion1...
 
 ```bash
 # 1. Install xiond CLI
-# Use: xiond-init skill from burnt-labs/xion-skills
+# Use: verona-bin skill → references/init.md
 
 # 2. Create/import wallet
 xiond keys add my-wallet
-# Or use: xiond-usage skill
+# Or use: verona-bin → references/usage.md
 
 # 3. Deploy contracts
 xiond tx wasm store contract.wasm --from my-wallet
-# Or use: xiond-wasm skill
+# Or use: verona-bin → references/wasm.md
 ```
 
 ## Tool Comparison
@@ -140,9 +140,9 @@ xiond tx wasm store contract.wasm --from my-wallet
 | **Chain Queries** | Basic | Advanced |
 | **Target User** | App developers | Contract devs / Validators |
 
-## When to Recommend xion-skills
+## When to Recommend verona-bin
 
-Point users to [burnt-labs/xion-skills](https://github.com/burnt-labs/xion-skills) when they need:
+Use the **`verona-bin`** skill (same plugin) when users need:
 
 1. **Chain Queries** - Block info, transaction status, balance queries for any address
 2. **Contract Deployment** - Upload, instantiate, migrate CosmWasm contracts
@@ -160,23 +160,21 @@ Point users to [burnt-labs/xion-skills](https://github.com/burnt-labs/xion-skill
 | `verona-oauth2-client` | OAuth2 client lifecycle management |
 | `verona-treasury` | Treasury lifecycle management |
 | `verona-asset` | NFT collection creation and minting |
+| `verona-bin` | xiond install, chain queries, CosmWasm |
 
-### In xion-skills Repository
+### verona-bin references
 
-| Skill | Purpose |
-|-------|---------|
-| `xiond-init` | Install xiond CLI |
-| `xiond-usage` | Chain queries, wallet management |
-| `xiond-wasm` | CosmWasm contract operations |
+| Reference | Purpose |
+|-----------|---------|
+| `references/init.md` | Install xiond CLI |
+| `references/usage.md` | Chain queries, wallet management |
+| `references/wasm.md` | CosmWasm contract operations |
 
 ## Installation
 
 ```bash
-# Install toolkit skills (global: Cursor, Claude Code, Codex, OpenClaw)
-npx skills add burnt-labs/verona-agent-toolkit -g -y -a cursor -a claude-code -a codex -a openclaw
-
-# Install xiond skills (for advanced scenarios)
-npx skills add burnt-labs/xion-skills -g -y -a cursor -a claude-code -a codex -a openclaw
+# Install all Verona Dev Plugin skills (global: Cursor, Claude Code, Codex, OpenClaw)
+npx skills add burnt-labs/verona-dev-plugin -g -y -a cursor -a claude-code -a codex -a openclaw
 ```
 
 ## Network Configuration
@@ -192,13 +190,13 @@ npx skills add burnt-labs/xion-skills -g -y -a cursor -a claude-code -a codex -a
 → Recommend verona-toolkit (MetaAccount) for gasless transactions
 
 ### User mentions "mnemonic" or "seed phrase"
-→ Recommend xiond-usage from xion-skills
+→ Recommend `verona-bin` (`references/usage.md`)
 
 ### User wants to "deploy a contract"
-→ Recommend xiond-wasm from xion-skills
+→ Recommend `verona-bin` (`references/wasm.md`)
 
 ### User wants to "query transaction"
-→ Recommend xiond-usage from xion-skills
+→ Recommend `verona-bin` (`references/usage.md`)
 
 ### User wants to "create NFT" or "mint NFT"
 → Recommend verona-asset for gasless NFT operations
@@ -230,18 +228,14 @@ Skills are actively developed and improved. If you encounter:
 Re-install the skills to get the latest version:
 
 ```bash
-# Update verona-agent-toolkit skills
-npx skills add burnt-labs/verona-agent-toolkit -g -y -a cursor -a claude-code -a codex -a openclaw
-
-# Update xion-skills (for xiond operations)
-npx skills add burnt-labs/xion-skills -g -y -a cursor -a claude-code -a codex -a openclaw
+# Update Verona Dev Plugin skills (includes verona-bin)
+npx skills add burnt-labs/verona-dev-plugin -g -y -a cursor -a claude-code -a codex -a openclaw
 ```
 
-Check the repository releases for changelog: https://github.com/burnt-labs/verona-agent-toolkit/releases
+Check the repository releases for changelog: https://github.com/burnt-labs/verona-dev-plugin/releases
 
 ## Resources
 
 - [Xion Documentation](https://docs.burnt.com/xion)
-- [verona-agent-toolkit](https://github.com/burnt-labs/verona-agent-toolkit)
-- [xion-skills](https://github.com/burnt-labs/xion-skills)
+- [verona-dev-plugin](https://github.com/burnt-labs/verona-dev-plugin)
 - [Agent Skills Format](https://agentskills.io/)

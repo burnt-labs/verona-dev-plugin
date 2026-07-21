@@ -310,7 +310,7 @@ See `references/integration-examples.md` for Claude Code and programmatic usage 
 - **verona-dev** - Unified entry point for Xion development
 - **verona-treasury** - Treasury management (requires authentication)
 - **verona-toolkit-init** - CLI installation (use if CLI not found)
-- **xiond-usage** (xion-skills) - Chain-level queries
+- **verona-bin** - Chain-level queries and CosmWasm (`xiond` CLI)
 
 ## Version
 

@@ -42,14 +42,14 @@
       "skill": "verona-toolkit-init",
       "priority": 1
     },
-    "xiond-chain": {
+    "verona-bin-chain": {
       "keywords": ["xiond", "chain query", "rpc", "block", "transaction status", "balance query", "链上查询"],
-      "skill": "xiond-usage (xion-skills)",
+      "skill": "verona-bin",
       "priority": 2
     },
-    "xiond-wasm": {
+    "verona-bin-wasm": {
       "keywords": ["deploy contract", "cosmwasm", "wasm", "instantiate", "migrate contract", "合约部署"],
-      "skill": "xiond-wasm (xion-skills)",
+      "skill": "verona-bin",
       "priority": 2
     }
   },

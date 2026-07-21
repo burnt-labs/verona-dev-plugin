@@ -1,6 +1,6 @@
 ---
 name: verona-treasury
-description: "Treasury management for Verona/Xion MetaAccount gasless transactions (create, fund, withdraw, authz/fee grants). Use when the user mentions Treasury, fee allowance, authz grant, or treasury operations on Verona/Xion. Requires verona-oauth2; use xiond-usage for chain-only queries."
+description: "Treasury management for Verona/Xion MetaAccount gasless transactions (create, fund, withdraw, authz/fee grants). Use when the user mentions Treasury, fee allowance, authz grant, or treasury operations on Verona/Xion. Requires verona-oauth2; use verona-bin for chain-only queries."
 metadata:
   author: burnt-labs
   version: "1.2.2"
@@ -273,13 +273,13 @@ For comprehensive documentation, see:
 
 ## Chain Queries
 
-> **Note**: For chain-level queries, use xiond from [xion-skills](https://github.com/burnt-labs/xion-skills).
+> **Note**: For chain-level queries, use the **`verona-bin`** skill (`xiond` CLI).
 
 | Query Type | Recommended Tool |
 |------------|------------------|
-| Transaction status | `xiond-usage` (xion-skills) |
-| Block info | `xiond-usage` (xion-skills) |
-| Balance for any address | `xiond-usage` (xion-skills) |
+| Transaction status | `verona-bin` → `references/usage.md` |
+| Block info | `verona-bin` → `references/usage.md` |
+| Balance for any address | `verona-bin` → `references/usage.md` |
 | Treasury-specific queries | This skill (`verona-treasury`) |
 
 ## Troubleshooting
@@ -305,7 +305,7 @@ verona-toolkit treasury list --no-cache
 - **verona-oauth2** - Authentication (use before this skill)
 - **verona-oauth2-client** - OAuth client lifecycle; after treasury redirect/branding changes run `oauth2 client sync-from-treasury`
 - **verona-toolkit-init** - CLI installation (use if CLI not found)
-- **xiond-usage** (xion-skills) - Chain-level queries
+- **verona-bin** - Chain-level queries and CosmWasm (`xiond` CLI)
 
 ## Version
 

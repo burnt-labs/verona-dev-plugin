@@ -351,7 +351,7 @@ Imports configuration (grants, fee config, params) to an existing Treasury.
 
 ## Chain Queries
 
-> **Note**: For chain-level queries, use xiond from [xion-skills](https://github.com/burnt-labs/xion-skills).
+> **Note**: For chain-level queries, use the **`verona-bin`** skill (`xiond` CLI).
 
 | Query Type | Command |
 |------------|---------|
@@ -359,4 +359,4 @@ Imports configuration (grants, fee config, params) to an existing Treasury.
 | Block info | `xiond query block` |
 | Balance (any address) | `xiond query bank balances <address>` |
 
-See `xiond-usage` skill in xion-skills for more details.
+See the **`verona-bin`** skill (`references/usage.md`) for more details.
