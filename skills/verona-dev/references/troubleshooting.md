@@ -37,7 +37,9 @@ Legacy `xion-testnet-1` is **not** a target for new integrations. Use `xion-test
 | Chain ID | `xion-testnet-1` | `xion-testnet-2` |
 | RPC | `https://rpc.xion-testnet-1.burnt.com:443` | `https://rpc.xion-testnet-2.burnt.com:443` |
 | REST | `https://api.xion-testnet-1.burnt.com:443` | `https://api.xion-testnet-2.burnt.com:443` |
-| Dashboard | `https://settings.testnet.burnt.com` | `https://auth.testnet.burnt.com` |
+| Dashboard | decommissioned — no endpoint | `https://auth.testnet.burnt.com` |
+
+`xion-testnet-1` has been removed from `@burnt-labs/constants`, so `getIframeUrl("xion-testnet-1")` returns `undefined` and `fetchConfig` against a testnet-1 RPC throws `Network not found`. There is no dashboard to fall back to — migrate the `chainId`.
 
 Update `chainId` in Abstraxion config, mob `ChainConfig`, and any hardcoded RPC URLs. `@burnt-labs/constants` resolves correct endpoints when you pass only `chainId`.
 
