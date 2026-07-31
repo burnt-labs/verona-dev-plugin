@@ -58,7 +58,7 @@ Chain-specific auth hosts are resolved from constants when you omit overrides in
 | Chain ID | Dashboard / auth app (`getIframeUrl`) | Notes |
 |----------|---------------------------------------|-------|
 | `xion-testnet-2` | `https://auth.testnet.burnt.com` | Testnet dashboard iframe and OAuth UI |
-| `xion-mainnet-1` | `https://settings.burnt.com` | Mainnet dashboard |
+| `xion-mainnet-1` | `https://auth.burnt.com` | Mainnet dashboard |
 
 `fetchConfig(rpcUrl)` queries `/status` on the RPC node, reads `node_info.network`, and returns `{ dashboardUrl, restUrl, networkId, feeGranter }` for supported chain IDs.
 
