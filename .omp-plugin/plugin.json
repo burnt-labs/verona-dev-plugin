@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "Verona Dev Plugin",
     "shortDescription": "Verona agent skills for MetaAccount and xiond workflows.",
-    "longDescription": "Unified Burnt Labs skills plugin for Verona development. Session entry via verona-dev; MetaAccount toolkit skills plus verona-bin for xiond/CosmWasm.",
+    "longDescription": "Unified Burnt Labs skills plugin for Verona development. Session entry via verona-dev (manual `/skill:verona-dev` on omp); MetaAccount toolkit skills plus verona-bin for xiond/CosmWasm.",
     "developerName": "Burnt Labs",
     "brandColor": "#4CB1DF",
     "composerIcon": "./assets/symbol.svg",

@@ -201,7 +201,7 @@ Both installs are **user-scoped** — the plugin is registered under `~/.omp/plu
 
 ### Reload
 
-Reload plugins in-session with `/reload-plugins`, or start a new omp session.
+Reload plugins in-session with `/reload-plugins` (requires omp ≥ 17.2.11; otherwise start a new omp session).
 
 ### Verify
 
@@ -210,6 +210,16 @@ omp plugin list
 ```
 
 Expect **`verona-dev-plugin`** in the list. omp's loader discovers the plugin from the `omp` manifest block in the repository's root `package.json` and scans the conventional `skills/` tree — no other configuration is required.
+
+### Update
+
+A URL install lives in `~/.omp/plugins/node_modules/verona-dev-plugin` (a separate clone created by the install), so `git pull` in your own checkout does not update it — re-run the install:
+
+```bash
+omp plugin install github:burnt-labs/verona-dev-plugin
+```
+
+For `omp plugin link` installs, the plugin points at your linked checkout, so `git pull` there updates it. After updating, reload with `/reload-plugins` (omp ≥ 17.2.11) or start a new omp session.
 
 ### Session entry (v0.1)
 
@@ -255,7 +265,7 @@ Manifest: `.claude-plugin/plugin.json`. Hooks: `hooks/hooks.json` (discovered by
 
 ## After install
 
-1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh, omp `/reload-plugins` or a new session).
+1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh, omp `/reload-plugins` — omp ≥ 17.2.11 — or a new omp session).
 2. Confirm the plugin name **`verona-dev-plugin`** appears in the host's plugin list (on omp: `omp plugin list`).
 3. On **Cursor**, **Kimi**, and **Claude Code**, session entry for **`verona-dev`** loads automatically when hooks/manifest are active. On **Codex**, trust plugin hooks first (`/hooks` or the trust prompt).
 4. On **omp**, invoke **`/skill:verona-dev`** manually at the start of each session — omp has no session-start hooks, so there is no automatic entry.
@@ -270,6 +280,8 @@ cd ~/verona-dev-plugin && git pull
 ```
 
 For Cursor local install, run `git pull` inside `~/.cursor/plugins/local/verona-dev-plugin`.
+
+On omp, `omp plugin install` URL installs live in `~/.omp/plugins/node_modules/verona-dev-plugin` as a separate clone — update them by re-running `omp plugin install github:burnt-labs/verona-dev-plugin`, then reload. `omp plugin link` installs point at your checkout, so `git pull` there and reload.
 
 ## Further reading
 

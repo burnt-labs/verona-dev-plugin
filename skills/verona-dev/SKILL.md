@@ -126,7 +126,7 @@ skills/verona-dev/scripts/validate-params.sh verona-treasury grant-config-add '{
 
 ## Install / update
 
-Manual host install only — see [INSTALL.md](../../INSTALL.md) at the plugin repository root (Cursor local path or marketplace, Kimi, Claude Code, Codex, omp). There is no `npx` package or install CLI for this plugin.
+Manual host install only — see [INSTALL.md](../../INSTALL.md) at the plugin repository root (Cursor local path or marketplace, Kimi, Claude Code, Codex; omp: manual `/skill:verona-dev` entry). There is no `npx` package or install CLI for this plugin.
 
 Changelog: https://github.com/burnt-labs/verona-dev-plugin/releases
 
