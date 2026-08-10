@@ -4,7 +4,7 @@ Manual install only. There is **no** install CLI, `npx` package, or custom insta
 
 ## Prerequisites
 
-- A supported host: [Cursor](https://cursor.com), [Codex](https://github.com/openai/codex), Claude Code, or [Kimi Code CLI](https://www.kimi.com/code/docs/kimi-code-cli/)
+- A supported host: [Cursor](https://cursor.com), [Codex](https://github.com/openai/codex), [Kimi Code CLI](https://www.kimi.com/code/docs/kimi-code-cli/), [omp (Oh My Pi)](https://omp.sh), or Claude Code
 - **Git** to clone this repository (unless your host installs directly from a URL)
 
 ## Get the plugin source
@@ -17,13 +17,45 @@ git clone https://github.com/burnt-labs/verona-dev-plugin.git ~/verona-dev-plugi
 
 Use any directory you prefer; replace `~/verona-dev-plugin` below with your checkout path.
 
+## Cleanup legacy skills
+
+If you previously installed **non-plugin** `verona-*` or `xion-*` / `xiond-*` skills (for example via `npx skills add burnt-labs/verona-agent-toolkit`, `burnt-labs/xion-skills`, or `skills.sh -g`), remove those copies **before** installing this plugin. Leftover standalone folders conflict with the plugin’s shared `skills/` tree (duplicate skill ids, stale routing, wrong paths).
+
+Check these personal skills roots **if present** and delete only folders whose names start with `verona-`, `xion-`, or `xiond-`:
+
+| Host / layout | Typical skills root |
+|---------------|---------------------|
+| Agents / Codex-style | `~/.agents/skills/` |
+| Cursor (personal skills) | `~/.cursor/skills/` |
+| Claude Code (personal skills) | `~/.claude/skills/` |
+| omp (Oh My Pi) (personal skills) | `~/.omp/agent/skills/` |
+
+Older `npx skills add … -a cursor -a claude-code -a codex -a openclaw` flows may also have created host-specific symlinks — confirm those targets are not still pointing at global copies of the legacy skills.
+
+Example (inspect first; remove only Verona/Xion folders, not the whole skills tree):
+
+```bash
+# List candidates
+ls ~/.agents/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
+ls ~/.cursor/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
+ls ~/.claude/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
+ls ~/.omp/agent/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
+
+# Remove leftovers (adjust paths to match what you listed)
+rm -rf ~/.agents/skills/verona-* ~/.agents/skills/xion-* ~/.agents/skills/xiond-* 2>/dev/null || true
+rm -rf ~/.omp/agent/skills/verona-* ~/.omp/agent/skills/xion-* ~/.omp/agent/skills/xiond-* 2>/dev/null || true
+```
+
+Do **not** delete the plugin checkout (for example `~/.cursor/plugins/local/verona-dev-plugin` or your clone under `~/verona-dev-plugin`).
+
 ## What you get
 
 | Component | Location | Status |
 |-----------|----------|--------|
 | Host manifests | `.cursor-plugin/`, `.codex-plugin/`, `.claude-plugin/`, `.kimi-plugin/` | Available |
+| omp manifest | `.omp-plugin/` + root `package.json` (`omp` block) | Available |
 | Shared skills | `skills/` | Available (vdp-002 corpus) |
-| Session entry | `verona-dev` skill + `hooks/` | Auto on Cursor, Codex, Claude, Kimi (Codex requires trusting plugin hooks) |
+| Session entry | `verona-dev` skill + `hooks/` | Auto on Cursor, Kimi, Claude Code (Codex: after trusting hooks); **Manual on omp** (`/skill:verona-dev`) |
 
 Each host discovers skills from the shared `skills/` tree per its manifest conventions.
 
@@ -152,6 +184,56 @@ Manifest: `.kimi-plugin/plugin.json` (`skills`: `./skills/`, `sessionStart.skill
 
 ---
 
+## omp (Oh My Pi)
+
+**Install method:** `omp plugin install` (GitHub URL) or `omp plugin link` (local development) per [omp docs](https://omp.sh).
+
+### From GitHub URL (user scope)
+
+```bash
+omp plugin install github:burnt-labs/verona-dev-plugin
+```
+
+### From local path (development)
+
+```bash
+omp plugin link /path/to/verona-dev-plugin
+```
+
+Both installs are **user-scoped** — the plugin is registered under `~/.omp/plugins/`, not per project.
+
+### Reload
+
+Reload plugins in-session with `/reload-plugins` (requires omp ≥ 17.2.11; otherwise start a new omp session).
+
+### Verify
+
+```bash
+omp plugin list
+```
+
+Expect **`verona-dev-plugin`** in the list. omp's loader discovers the plugin from the `omp` manifest block in the repository's root `package.json` and scans the conventional `skills/` tree — no other configuration is required.
+
+### Update
+
+A URL install lives in `~/.omp/plugins/node_modules/verona-dev-plugin` (a separate clone created by the install), so `git pull` in your own checkout does not update it — re-run the install:
+
+```bash
+omp plugin install github:burnt-labs/verona-dev-plugin
+```
+
+For `omp plugin link` installs, the plugin points at your linked checkout, so `git pull` there updates it. After updating, reload with `/reload-plugins` (omp ≥ 17.2.11) or start a new omp session.
+
+### Session entry (v0.1)
+
+omp has **no session-start hooks**, so session entry is **manual** — the skill is never loaded automatically:
+
+| Mode | Behavior |
+|------|----------|
+| **Manual** | Invoke **`/skill:verona-dev`** at the start of a Verona session |
+
+---
+
 ## Claude Code
 
 **Install method:** Claude plugin marketplace or local plugin path per [Claude Code plugin docs](https://docs.anthropic.com/en/docs/claude-code/plugins).
@@ -186,36 +268,11 @@ Manifest: `.claude-plugin/plugin.json`. Hooks: `hooks/hooks.json` (discovered by
 
 ## After install
 
-1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh).
-2. Confirm the plugin name **`verona-dev-plugin`** appears in the host's plugin list.
-3. On **Cursor**, **Kimi**, **Claude Code**, and **Codex**, session entry for **`verona-dev`** loads automatically when hooks/manifest are active. On **Codex**, trust plugin hooks first (`/hooks` or the trust prompt).
-4. If you previously installed **standalone** (non-plugin) `verona-*` or `xion-*` / `xiond-*` skills, remove them so the host does not load duplicates alongside this plugin — see [Clean up legacy standalone skills](#clean-up-legacy-standalone-skills).
-
-## Clean up legacy standalone skills
-
-Before this plugin, Verona / Xion agent skills were often copied or linked into a host’s personal skills directory (for example from `verona-agent-toolkit`, `xion-skills`, or similar). Those copies **conflict** with the plugin’s shared `skills/` tree (duplicate skill ids, stale routing, wrong paths).
-
-Remove any leftover **non-plugin** skill folders whose names start with `verona-`, `xion-`, or `xiond-` from common personal skills roots, for example:
-
-| Host / layout | Typical skills root |
-|---------------|---------------------|
-| Agents / Codex-style | `~/.agents/skills/` |
-| Cursor (personal skills) | `~/.cursor/skills/` |
-| Claude Code (personal skills) | `~/.claude/skills/` |
-
-Example (inspect first, then delete only the leftover Verona/Xion folders):
-
-```bash
-# List candidates
-ls ~/.agents/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
-ls ~/.cursor/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
-ls ~/.claude/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
-
-# Remove leftovers (adjust paths to match what you listed)
-rm -rf ~/.agents/skills/verona-* ~/.agents/skills/xion-* ~/.agents/skills/xiond-*
-```
-
-Do **not** delete the plugin checkout itself (for example `~/.cursor/plugins/local/verona-dev-plugin` or your clone under `~/verona-dev-plugin`). After cleanup, reload the host so only the plugin-provided skills remain.
+1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh, omp `/reload-plugins` — omp ≥ 17.2.11 — or a new omp session).
+2. Confirm the plugin name **`verona-dev-plugin`** appears in the host's plugin list (on omp: `omp plugin list`).
+3. On **Cursor**, **Kimi**, and **Claude Code**, session entry for **`verona-dev`** loads automatically when hooks/manifest are active. On **Codex**, trust plugin hooks first (`/hooks` or the trust prompt).
+4. On **omp**, invoke **`/skill:verona-dev`** manually at the start of each session — omp has no session-start hooks, so there is no automatic entry.
+5. If legacy standalone skills were not removed before install, complete [Cleanup legacy skills](#cleanup-legacy-skills) and reload the host.
 
 ## Updating
 
@@ -226,6 +283,8 @@ cd ~/verona-dev-plugin && git pull
 ```
 
 For Cursor local install, run `git pull` inside `~/.cursor/plugins/local/verona-dev-plugin`.
+
+On omp, `omp plugin install` URL installs live in `~/.omp/plugins/node_modules/verona-dev-plugin` as a separate clone — update them by re-running `omp plugin install github:burnt-labs/verona-dev-plugin`, then reload. `omp plugin link` installs point at your checkout, so `git pull` there and reload.
 
 ## Further reading
 
