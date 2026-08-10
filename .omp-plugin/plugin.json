@@ -1,0 +1,35 @@
+{
+  "name": "verona-dev-plugin",
+  "version": "0.1.0",
+  "description": "Agent skills for Verona development from Burnt Labs.",
+  "author": {
+    "name": "Burnt Labs"
+  },
+  "homepage": "https://github.com/burnt-labs/verona-dev-plugin",
+  "repository": "https://github.com/burnt-labs/verona-dev-plugin.git",
+  "license": "Apache-2.0",
+  "keywords": [
+    "verona",
+    "burnt",
+    "omp-plugin",
+    "oh-my-pi",
+    "skills",
+    "metaaccount"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Verona Dev Plugin",
+    "shortDescription": "Verona agent skills for MetaAccount and xiond workflows.",
+    "longDescription": "Unified Burnt Labs skills plugin for Verona development. Session entry via verona-dev; MetaAccount toolkit skills plus verona-bin for xiond/CosmWasm.",
+    "developerName": "Burnt Labs",
+    "brandColor": "#4CB1DF",
+    "composerIcon": "./assets/symbol.svg",
+    "logo": "./assets/logo.svg",
+    "logoDark": "./assets/logo-dark.svg",
+    "defaultPrompt": [
+      "Start Verona development with the verona-dev entry skill.",
+      "Install or upgrade xiond using verona-bin.",
+      "Set up MetaAccount auth with verona-oauth2."
+    ]
+  }
+}
