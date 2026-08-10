@@ -6,12 +6,13 @@ This repository is the Burnt Labs **Verona Dev Plugin** — a multi-host agent s
 
 The primary entry skill is **`verona-dev`**. Use it for Verona development context.
 
-| Host | Auto-entry (v0.1) |
-|------|-------------------|
+| Host | Session entry (v0.1) |
+|------|----------------------|
 | **Cursor** | `hooks/hooks-cursor.json` → `hooks/session-start` |
 | **Kimi** | `sessionStart.skill: "verona-dev"` in `.kimi-plugin/plugin.json` |
 | **Claude Code** | `hooks/hooks.json` SessionStart → `hooks/session-start` |
 | **Codex** | `hooks/hooks.json` SessionStart → `hooks/session-start` (trust plugin hooks first) |
+| **omp** | Manual: `/skill:verona-dev` (no session-start hooks; discovery via `package.json#omp` + conventional `skills/`) |
 
 Shared skills live under `skills/`. Brand SVGs live under `assets/`. Install per host: [INSTALL.md](INSTALL.md).
 

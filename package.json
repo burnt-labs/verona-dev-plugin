@@ -1,0 +1,24 @@
+{
+  "name": "verona-dev-plugin",
+  "version": "0.1.0",
+  "description": "Agent skills for Verona development from Burnt Labs.",
+  "author": {
+    "name": "Burnt Labs"
+  },
+  "homepage": "https://github.com/burnt-labs/verona-dev-plugin",
+  "repository": "https://github.com/burnt-labs/verona-dev-plugin.git",
+  "license": "Apache-2.0",
+  "private": true,
+  "keywords": [
+    "verona",
+    "burnt",
+    "omp-plugin",
+    "oh-my-pi",
+    "skills",
+    "metaaccount"
+  ],
+  "omp": {
+    "name": "verona-dev-plugin",
+    "description": "Verona agent skills for MetaAccount and xiond workflows."
+  }
+}

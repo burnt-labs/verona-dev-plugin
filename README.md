@@ -4,11 +4,11 @@ Build [Verona](https://verona.dev/) apps with Burnt Labs skills inside your codi
 
 This plugin gives your agent a shared set of Verona skills — MetaAccount auth, toolkit flows, and `xiond` / CosmWasm helpers — so you spend less time re-explaining the stack every session.
 
-It works with **Cursor**, **Codex**, **Claude Code**, and **Kimi**. Install once through your host’s normal plugin or path install flow.
+It works with **Cursor**, **Codex**, **Claude Code**, **Kimi**, and **omp (Oh My Pi)**. Install once through your host’s normal plugin or path install flow.
 
 ## What it does
 
-After install, a new session can pick up Verona context automatically (on Codex, trust the plugin’s hooks first). The entry skill is **`verona-dev`**, which routes work into two clear buckets: **application development** (SDK guides + chain CLI) and **toolkit operations** (MetaAccount CLI flows).
+After install, a new session can pick up Verona context automatically on hosts with session-start hooks — Cursor, Kimi, and Claude Code (on Codex, trust the plugin’s hooks first). On **omp**, entry is manual: invoke **`/skill:verona-dev`** at the start of a session. The entry skill is **`verona-dev`**, which routes work into two clear buckets: **application development** (SDK guides + chain CLI) and **toolkit operations** (MetaAccount CLI flows).
 
 ## Skills routing
 
