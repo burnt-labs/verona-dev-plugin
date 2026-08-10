@@ -4,7 +4,7 @@ Manual install only. There is **no** install CLI, `npx` package, or custom insta
 
 ## Prerequisites
 
-- A supported host: [Cursor](https://cursor.com), [Codex](https://github.com/openai/codex), Claude Code, or [Kimi Code CLI](https://www.kimi.com/code/docs/kimi-code-cli/)
+- A supported host: [Cursor](https://cursor.com), [Codex](https://github.com/openai/codex), [Kimi Code CLI](https://www.kimi.com/code/docs/kimi-code-cli/), [omp (Oh My Pi)](https://omp.sh), or Claude Code
 - **Git** to clone this repository (unless your host installs directly from a URL)
 
 ## Get the plugin source
@@ -50,8 +50,9 @@ Do **not** delete the plugin checkout (for example `~/.cursor/plugins/local/vero
 | Component | Location | Status |
 |-----------|----------|--------|
 | Host manifests | `.cursor-plugin/`, `.codex-plugin/`, `.claude-plugin/`, `.kimi-plugin/` | Available |
+| omp manifest | `.omp-plugin/` + root `package.json` (`omp` block) | Available |
 | Shared skills | `skills/` | Available (vdp-002 corpus) |
-| Session entry | `verona-dev` skill + `hooks/` | Auto on Cursor, Codex, Claude, Kimi (Codex requires trusting plugin hooks) |
+| Session entry | `verona-dev` skill + `hooks/` | Auto on Cursor, Kimi, Claude Code (Codex: after trusting hooks); **Manual on omp** (`/skill:verona-dev`) |
 
 Each host discovers skills from the shared `skills/` tree per its manifest conventions.
 
@@ -180,6 +181,46 @@ Manifest: `.kimi-plugin/plugin.json` (`skills`: `./skills/`, `sessionStart.skill
 
 ---
 
+## omp (Oh My Pi)
+
+**Install method:** `omp plugin install` (GitHub URL) or `omp plugin link` (local development) per [omp docs](https://omp.sh).
+
+### From GitHub URL (user scope)
+
+```bash
+omp plugin install github:burnt-labs/verona-dev-plugin
+```
+
+### From local path (development)
+
+```bash
+omp plugin link /path/to/verona-dev-plugin
+```
+
+Both installs are **user-scoped** — the plugin is registered under `~/.omp/plugins/`, not per project.
+
+### Reload
+
+Reload plugins in-session with `/reload-plugins`, or start a new omp session.
+
+### Verify
+
+```bash
+omp plugin list
+```
+
+Expect **`verona-dev-plugin`** in the list. omp's loader discovers the plugin from the `omp` manifest block in the repository's root `package.json` and scans the conventional `skills/` tree — no other configuration is required.
+
+### Session entry (v0.1)
+
+omp has **no session-start hooks**, so session entry is **manual** — the skill is never loaded automatically:
+
+| Mode | Behavior |
+|------|----------|
+| **Manual** | Invoke **`/skill:verona-dev`** at the start of a Verona session |
+
+---
+
 ## Claude Code
 
 **Install method:** Claude plugin marketplace or local plugin path per [Claude Code plugin docs](https://docs.anthropic.com/en/docs/claude-code/plugins).
@@ -214,10 +255,11 @@ Manifest: `.claude-plugin/plugin.json`. Hooks: `hooks/hooks.json` (discovered by
 
 ## After install
 
-1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh).
-2. Confirm the plugin name **`verona-dev-plugin`** appears in the host's plugin list.
-3. On **Cursor**, **Kimi**, **Claude Code**, and **Codex**, session entry for **`verona-dev`** loads automatically when hooks/manifest are active. On **Codex**, trust plugin hooks first (`/hooks` or the trust prompt).
-4. If legacy standalone skills were not removed before install, complete [Cleanup legacy skills](#cleanup-legacy-skills) and reload the host.
+1. Reload the host (Cursor reload window, Codex restart, Kimi `/plugins reload`, Claude session refresh, omp `/reload-plugins` or a new session).
+2. Confirm the plugin name **`verona-dev-plugin`** appears in the host's plugin list (on omp: `omp plugin list`).
+3. On **Cursor**, **Kimi**, and **Claude Code**, session entry for **`verona-dev`** loads automatically when hooks/manifest are active. On **Codex**, trust plugin hooks first (`/hooks` or the trust prompt).
+4. On **omp**, invoke **`/skill:verona-dev`** manually at the start of each session — omp has no session-start hooks, so there is no automatic entry.
+5. If legacy standalone skills were not removed before install, complete [Cleanup legacy skills](#cleanup-legacy-skills) and reload the host.
 
 ## Updating
 
