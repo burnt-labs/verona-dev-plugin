@@ -8,7 +8,7 @@ It works with **Cursor**, **Codex**, **Claude Code**, **Kimi**, and **omp (Oh My
 
 ## What it does
 
-After install, a new session can pick up Verona context automatically on hosts with session-start hooks — Cursor, Kimi, and Claude Code (on Codex, trust the plugin’s hooks first). On **omp**, entry is manual: invoke **`/skill:verona-dev`** at the start of a session. The entry skill is **`verona-dev`**, which routes work into two clear buckets: **application development** (SDK guides + chain CLI) and **toolkit operations** (MetaAccount CLI flows).
+After install, a new session can pick up Verona context automatically on hosts with session-start hooks — Cursor, Kimi, Claude Code, and Codex (on Codex, trust the plugin’s hooks first). On **omp**, entry is manual: invoke **`/skill:verona-dev`** at the start of a session. The entry skill is **`verona-dev`**, which routes work into two clear buckets: **application development** (SDK guides + chain CLI) and **toolkit operations** (MetaAccount CLI flows).
 
 ## Skills routing
 

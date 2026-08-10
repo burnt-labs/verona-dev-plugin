@@ -28,6 +28,7 @@ Check these personal skills roots **if present** and delete only folders whose n
 | Agents / Codex-style | `~/.agents/skills/` |
 | Cursor (personal skills) | `~/.cursor/skills/` |
 | Claude Code (personal skills) | `~/.claude/skills/` |
+| omp (Oh My Pi) (personal skills) | `~/.omp/agent/skills/` |
 
 Older `npx skills add … -a cursor -a claude-code -a codex -a openclaw` flows may also have created host-specific symlinks — confirm those targets are not still pointing at global copies of the legacy skills.
 
@@ -38,9 +39,11 @@ Example (inspect first; remove only Verona/Xion folders, not the whole skills tr
 ls ~/.agents/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
 ls ~/.cursor/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
 ls ~/.claude/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
+ls ~/.omp/agent/skills 2>/dev/null | grep -E '^(verona-|xion-|xiond-)'
 
 # Remove leftovers (adjust paths to match what you listed)
-rm -rf ~/.agents/skills/verona-* ~/.agents/skills/xion-* ~/.agents/skills/xiond-*
+rm -rf ~/.agents/skills/verona-* ~/.agents/skills/xion-* ~/.agents/skills/xiond-* 2>/dev/null || true
+rm -rf ~/.omp/agent/skills/verona-* ~/.omp/agent/skills/xion-* ~/.omp/agent/skills/xiond-* 2>/dev/null || true
 ```
 
 Do **not** delete the plugin checkout (for example `~/.cursor/plugins/local/verona-dev-plugin` or your clone under `~/verona-dev-plugin`).
