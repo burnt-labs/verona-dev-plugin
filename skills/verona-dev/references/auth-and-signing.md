@@ -36,11 +36,13 @@ authentication: {
   type: "signer",
   aaApiUrl: string,
   getSignerConfig: () => Promise<SignerConfig>,
-  smartAccountContract: SmartAccountContractConfig,
+  smartAccountContract: { codeId: number, addressPrefix: string },
   indexer?: IndexerConfig,
   treasuryIndexer?: { url: string },
 }
 ```
+
+In signer mode, **smart-account addresses come from the AA API** at `aaApiUrl`. The SDK asks it for the address to create (`GET /api/v2/account/address/...`) and for existing accounts (`GET /api/v2/account/check/...`). Don't configure or derive a contract checksum: `smartAccountContract.checksum` is deprecated and ignored, and `codeId` doesn't choose the address. With `smartAccountContract` set, `indexer` isn't used for discovery.
 
 `authAppUrl` / `iframeUrl` default from chain-specific constants — see [networks.md](./networks.md). Override only when testing against a non-default dashboard host.
 
